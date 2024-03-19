@@ -294,44 +294,6 @@ def coordinadores(request):
 
                 total_final = total_final + len(total)
 
-    masculino = 0
-    femenino = 0
-    jovenes = 0
-    adultos = 0
-    mayores = 0
-    m_joven = 0
-    f_joven = 0
-    m_adulto = 0
-    f_adulto = 0
-    m_mayor = 0 
-    f_mayor = 0
-    c1 = 0
-    c2 = 0
-    c3 = 0
-    a1= 0 
-    a2= 0 
-    a3 = 0 
-    a4 = 0 
-    a5 = 0 
-    a6 = 0 
-    a7 = 0 
-    a8 = 0 
-    a9 = 0 
-    a10 = 0 
-    a11 = 0 
-    a12 = 0 
-    a13 = 0 
-    a14 = 0 
-    a15 = 0 
-    a16= 0 
-    a17 = 0 
-    a18 = 0 
-    a19= 0 
-    a20 = 0 
-    a21 = 0 
-    a22 = 0 
-    a23 = 0 
-
     fecha_actual = datetime.now()
     data = total_votantes(request)
     for i in data:
