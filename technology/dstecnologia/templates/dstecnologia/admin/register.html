@@ -1,0 +1,134 @@
+{% extends "dstecnologia/layout.html" %}
+{% load static %}
+
+ {% block registro2 %}
+  <form method="POST" action="">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit" class="btn btn-success">Register</button>
+  </form>
+ {% endblock %}
+
+ {% block registro %}
+  <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+ <form method = "POST" action = "">
+    {% csrf_token %}
+ <section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                  alt="Sample photo" class="img-fluid"
+                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">Student registration form</h3>
+
+                  <div class="row">
+                    <select name="groups" id="id_groups" multiple="">
+                      <option value="2">estudiante</option>
+                    
+                      <option value="1">profesor</option>
+                    
+                    </select>
+                    
+                    <div class="col-md-3 mb-4">
+                      <select class="form-select select"  name="grado" id="id_grado">
+                        <option value="1th">1th</option>
+                        <option value="2th">2th</option>
+                        <option value="3th">3th</option>
+                        <option value="4th" >4th</option>
+                        <option value="5th" selected="">{{ calificacions.grado }}</option>
+                        <option value="6th">6th</option>
+                      </select>
+                      <label class="form-check-label" for="femaleGender">Grado:</label>
+                    </div>
+
+                    <div class="col-md-3 mb-4">
+                      <select class="form-select select" name="seccion" id="id_seccion">
+                        <option value="A" selected="">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                      </select>
+                      <label class="form-check-label" for="femaleGender">Sección:</label>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                      <select class="form-select select" name="nivel" id="id_nivel">
+                        <option value="Inicial" selected="">Inicial</option>
+                        <option value="Primaria">Primaria</option>
+                        <option value="Secundaria">Secundaria</option>
+                      </select>
+                      <label class="form-check-label" for="femaleGender">Nivel:</label>
+                    </div>
+                  </div>
+  
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1m" class="form-control form-control-lg" name="first_name" value="" class="vTextField" maxlength="150" id="id_first_name">
+                        <label class="form-label" for="form3Example1m">First name</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input  id="form3Example1n" class="form-control form-control-lg"  type="text" name="last_name" value="" class="vTextField" maxlength="150" id="id_last_name">
+                        <label class="form-label" for="form3Example1n">Last name</label>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="form-outline mb-4">
+                    <input id="form3Example8" class="form-control form-control-lg" type="email" name="email" value="" class="vTextField" maxlength="254" id="id_email">
+                    <label class="form-label" for="form3Example8">Email:</label>
+                  
+                  </div>
+  
+               
+                  <div class="col-md-3 mb-4">
+                    <select class="form-select select" name="sexo" id="id_sexo">
+                      <option value="M">Masculino</option>
+                      <option value="F" selected="">Femenino</option>
+                    </select>
+                    <label class="form-check-label" for="femaleGender">Sexo:</label>
+                  </div>
+                  
+                  
+  
+                  <div class="form-outline mb-4">
+                    <input id="form3Example9" class="form-control form-control-lg" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                    <label class="form-label" for="form3Example9">UserName</label>
+                  </div>
+  
+                  <div class="form-outline mb-4">
+                    <input id="form3Example90" class="form-control form-control-lg" type="password" name="password1" autocomplete="new-password" required="" id="id_password1">
+                    <label class="form-label" for="form3Example90">Password</label>
+                  </div>
+  
+                  <div class="form-outline mb-4">
+                    <input id="form3Example99" class="form-control form-control-lg" type="password" name="password2" autocomplete="new-password" required="" id="id_password2">
+                    <label class="form-label" for="form3Example99">Repeat Password</label>
+                  </div>
+  
+                  <div class="d-flex justify-content-end pt-3">
+                    <button type="button" class="btn btn-light btn-lg">Reset all</button>
+                    <input class="btn btn-warning btn-lg ms-2" type="submit" value="Submit">
+                    
+                  </div>
+  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ </form>
+
+ {% endblock %}

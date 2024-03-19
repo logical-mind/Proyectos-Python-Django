@@ -1,0 +1,217 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    ,initial-scale=1.0">
+    <title>DS Tecnology</title>
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+      body {
+    background-color: #FFCDD2;
+}
+
+.bg-black {
+    background-color: #000;
+}
+
+#logo {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+}
+
+.navbar-brand {
+    padding: 14px 20px;
+    font-size: 16px;
+}
+
+.navbar-nav {
+    width: 100%;
+}
+
+.nav-item {
+    padding: 6px 14px;
+    text-align: center;
+}
+
+.nav-link {
+    padding-bottom: 10px; 
+}
+
+.v-line {
+    background-color: gray;
+    width: 1px;
+    height: 20px;
+}
+
+.navbar-collapse.collapse.in {
+    display: block !important;
+}
+
+@media (max-width: 576px) {
+    .nav-item {
+        width: 100%;
+        text-align: left;
+    }
+
+    .v-line {
+        display: none;
+    }
+}
+    </style>
+  
+
+    <div class="container-fluid px-0">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-black py-0 px-0">
+          <a class="navbar-brand" href="#"><img src= "{% static "img/ds.png" %}" alt="" style="width:40px ;"> &nbsp;&nbsp;&nbsp;DS Tecnology</a>
+          <span class="v-line"></span>
+          <button class="navbar-toggler mr-3" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                  
+                  {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">BlackBoard</a>
+                  </li>
+                  {% endif %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Contat Us</a>
+                  </li>
+                  {% if request.user.is_authenticated %}
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">Tutorials</a>
+                  </li>
+                  {% endif %}
+              </ul>
+                {% if request.user.is_authenticated %}
+      
+                <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="/salir">Sign Out</a>
+                {% else %}
+                <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="/blackboard">Sign In</a>
+                {% endif %}
+          </div>
+      </nav>
+  </div>
+
+
+  </body>
+  
+  <script>
+  // Burger menus
+  document.addEventListener('DOMContentLoaded', function() {
+      // open
+      const burger = document.querySelectorAll('.navbar-burger');
+      const menu = document.querySelectorAll('.navbar-menu');
+  
+      if (burger.length && menu.length) {
+          for (var i = 0; i < burger.length; i++) {
+              burger[i].addEventListener('click', function() {
+                  for (var j = 0; j < menu.length; j++) {
+                      menu[j].classList.toggle('hidden');
+                  }
+              });
+          }
+      }
+  
+      // close
+      const close = document.querySelectorAll('.navbar-close');
+      const backdrop = document.querySelectorAll('.navbar-backdrop');
+  
+      if (close.length) {
+          for (var i = 0; i < close.length; i++) {
+              close[i].addEventListener('click', function() {
+                  for (var j = 0; j < menu.length; j++) {
+                      menu[j].classList.toggle('hidden');
+                  }
+              });
+          }
+      }
+  
+      if (backdrop.length) {
+          for (var i = 0; i < backdrop.length; i++) {
+              backdrop[i].addEventListener('click', function() {
+                  for (var j = 0; j < menu.length; j++) {
+                      menu[j].classList.toggle('hidden');
+                  }
+              });
+          }
+      }
+  });
+  </script>
+    
+            </form>
+          </div>
+        </div>
+      </nav>  
+
+</head>
+<body>
+  <div>
+    {% block list_estudiante %}
+    {% endblock %}
+    {% block registro %}
+    {% endblock %}
+    {% block index %}
+    {% endblock %}
+    {% block login %}
+    {% endblock %}
+    {% block contac %}
+    {% endblock %}
+    {% block denegado %}
+    {% endblock %}
+    {% block teacher %}
+    {% endblock %}
+  </div>
+<div>
+  {% block grades %}
+  {% endblock %}
+</div>
+
+<div class="grid grid-flow-col auto-cols-max">
+  <div style="width: 300px ;">
+    {% block content %}
+    {% endblock %}
+  </div>
+  {% if "/blackboard/" in request.path %}
+  <div style=" position: absolute; margin-left: 850px; margin-top: 270px;">
+    {% block animacion %}
+    {% endblock %}
+  </div>
+  {% endif %}
+  <div style=" position: absolute; margin-left: 300px;">
+    {% block contenido %}
+    {% endblock %}
+  </div>
+
+  <div style="width: 600px ;">
+    {% block acordion %}
+    {% endblock %}
+    {% block practices %}
+    {% endblock %}
+  </div>
+  <div style="width: 400px ; margin-left: 70px;">
+    {% block grafico %}
+    {% endblock %}
+  </div>
+
+</div>
+    
+</body>
+<footer>
+
+</footer>
+<script type="text/javascript"src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>

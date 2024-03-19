@@ -1,0 +1,183 @@
+﻿{% extends "dstecnologia/layout.html" %}
+{% load static %}
+
+{% block list_estudiante %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<script>
+    let count = 0;
+    meses = ["Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"];
+    numeros = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve"];
+</script>
+
+<div class="w-48 text-gray-900 bg-white rounded-lg border border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+           
+
+    {% for estudiantes in estudiantess %}
+    {% if s_grado == estudiantes.grado and s_seccion == estudiantes.seccion %}
+
+    <button type="button" id="" class="listas inline-flex relative items-center py-2 px-4 w-full text-sm font-medium rounded-t-lg border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+        <svg aria-hidden="true" class="mr-2 w-4 h-4 fill-current" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd"></path></svg>
+        {{ estudiantes.first_name }} &nbsp{{ estudiantes.last_name }}
+    </button>
+
+   {% endif %}
+
+            <Script>
+                
+                var counter = count.toString();
+                document.getElementsByClassName("listas")[count].href = "#list" + counter;
+                document.getElementsByClassName("listas")[count].id = "click" + counter;
+                count++;
+            </Script>
+            {% endfor %}
+        
+</div>
+
+    <div class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+            <script>
+                count = 0;
+            </script>
+            {% for estudiantes in estudiantess %}
+            <script>
+                let count2 = 0
+            </script>
+            {% if s_grado == estudiantes.grado and s_seccion == estudiantes.seccion %}
+            <div class="listas2 tab-pane show active" id="" role="tabpanel" aria-labelledby="list-home-list">
+                {% for mes in meses %}
+                <div class="accordion" id="accordionExample" style="margin-top: 20px;">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <p>{{ mes }}</p>
+
+                                <form method="POST" action="">
+                                    {% csrf_token %}
+                                    <input type="text" name="username" value="" class="_user vTextField" maxlength="100"
+                                        required="" id="id_username">
+
+                                    <select name="grado" id="id_grado">
+                                        <option value="{{s_grado}}" selected="">{{s_grado}}</option>
+                                    </select>
+
+                                    <select name="seccion" id="id_seccion">
+                                        <option value="{{s_seccion}}" selected="">{{s_seccion}}</option>
+                                    </select>
+
+                                    <select name="nivel" id="id_nivel">
+                                        <option value="{{s_nivel}}">{{s_nivel}}</option>
+                                    </select>
+
+                                    <input value="{{mes}}" type="text" name="mes" class="vTextField" maxlength="100"
+                                        required="" id="id_mes">
+
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <table class="table table-bordered">
+
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Weeks</th>
+                                            <th scope="col">Qualifications</th>
+                                            <th scope="col">Extra points</th>
+                                            <th scope="col">Comment</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tr>
+                                        <th scope="row">
+                                            <input style="width: 60px; border: 0ch; font-weight: bold;" value="Week 1"
+                                                type="text" name="semana" class="vTextField" maxlength="100" required=""
+                                                id="id_semana">
+                                        </th>
+                                        <td><input style="width: 80px;" type="number" name="nota" class="vIntegerField"
+                                                required="" id="id_nota"></td>
+                                        <td><input style="width: 80px;" type="number" name="extra_point"
+                                                class="vIntegerField" required="" id="id_extra_point"></td>
+                                        <td><input type="text" name="comentario" class="vTextField" maxlength="100"
+                                                required="" id="id_comentario"></td>
+                                        <td><input type="submit" value="Save" class="default" name="_save"></td>
+                                    </tr>
+                                    </form>
+                                    <tr>
+                                        <th scope="row">
+                                            <input style="width: 60px; border: 0ch; font-weight: bold;" value="Week 2"
+                                                type="text" name="semana" class="vTextField" maxlength="100" required=""
+                                                id="id_semana">
+                                        </th>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row">
+                                            <input style="width: 60px; border: 0ch; font-weight: bold;" value="Week 3"
+                                                type="text" name="semana" class="vTextField" maxlength="100" required=""
+                                                id="id_semana">
+                                        </th>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row">
+                                            <input style="width: 60px; border: 0ch; font-weight: bold;" value="Week 4"
+                                                type="text" name="semana" class="vTextField" maxlength="100" required=""
+                                                id="id_semana">
+                                        </th>
+                                        <td>--</td>
+                                        <td>--</td>
+                                        <td>--</td>
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td style="font-weight: bold;">--</td>
+                                        <td style="font-weight: bold;">--</td>
+                                        <td style="font-weight: bold;">--</td>
+                                    </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <Script>
+                    var counter2 = count2.toString();
+                    document.getElementsByClassName("_user")[count2].value = "{{estudiantes.username}}";
+                    count2++;
+                </Script>
+
+                {% endfor %}
+
+            </div>
+            {% endif %}
+            <Script>
+                var counter = count.toString();
+                document.getElementsByClassName("listas2")[count].id = "list" + counter;
+                count++;
+            </Script>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    {
+        
+
+    }
+</script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+
+
+
+
+{% endblock %}

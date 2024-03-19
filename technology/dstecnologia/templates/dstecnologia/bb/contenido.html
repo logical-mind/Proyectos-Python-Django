@@ -1,0 +1,85 @@
+{% extends "dstecnologia/blackboard.html" %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+{% endblock %}
+
+{% block contenido %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!-- Enlace a los archivos CSS y JS de MDB -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.12.0/css/mdb.min.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mdb-ui-kit@3.12.0/js/mdb.min.js"></script>
+    
+  <div class="row" style="margin-top:50px;">
+    <div class="col-4">
+      <div class="list-group list-group-light" id="list-tab" role="tablist">
+        <a class="list-group-item active list-group-item-action px-3 border-0" id="list-home-list"
+        data-mdb-toggle="list" href="#list-home" role="tab" aria-controls="list-home"></a>
+        <a class="list-group-item  list-group-item-action px-3 border-0" id="list-conceptos-list"
+        data-mdb-toggle="list" href="#list-conceptos" role="tab" aria-controls="list-conceptos">1.0 Conceptos de programación</a>
+        <a class="list-group-item list-group-item-action px-3 border-0" id="list-profile-list"
+          data-mdb-toggle="list" href="#list-algoritmo" role="tab" aria-controls="list-algoritmo">1.1 Algoritmos y lógica</a>
+        <a class="list-group-item list-group-item-action px-3 border-0" id="list-algoritmo-list"
+          data-mdb-toggle="list" href="#list-messages" role="tab" aria-controls="list-messages">1.2 Diagrama de flujo</a>
+        <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.3 Simbolos del diagrama</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.4 Python comandos</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.5 Variables y sus tipos</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.6 Declaración de variables</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.7 "int" / "str" - Python</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.8 Comando "input"</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">1.9 Comando "print"</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">2.0 Operadores logicos</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">2.1 If / Else / Elif</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">2.2 Bucle while</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">2.3 Bucle for</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">3.0 Random</a>
+          <a class="list-group-item list-group-item-action px-3 border-0" id="list-settings-list"
+          data-mdb-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">3.1 Funciones</a>
+      </div>
+    </div>
+
+
+    <div style=" border: 4px solid rgb(94, 104, 137); background-color: black; width: 700px;" class="col">            
+      <div class="tab-content" id="nav-tabContent">
+        
+        <div class="tab-pane show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+            <img style="margin-top: 120px; margin-left: 190px;" src="{% static "img/python.png" %}"  alt="..." width="300px" height="300px">
+          </div>
+
+        <div class="tab-pane" id="list-conceptos" role="tabpanel" aria-labelledby="list-conceptos-list">
+            <p style="color:white ; margin-top:20px; font-size: 20px;">1.0 Conceptos de Programación</p>
+            <p style="color: white; text-align: justify; margin-top:20px;" >En el ámbito de la informática, la programación refiere a la acción de crear programas o aplicaciones a través del desarrollo de un código fuente, que se basa en el conjunto de instrucciones que sigue el ordenador para ejecutar un programa.
+            La programación es lo que permite que un ordenador funcione y realice las tareas que el usuario solicita.</p>
+            <img style="margin-top: 20px; margin-left: 35px;" src="{% static "img/pythoncode.jpeg" %}"  alt="..." width="600px" height="300px">
+        </div>
+        <div class="tab-pane " id="list-algoritmo" role="tabpanel" aria-labelledby="list-algoritmo-list">
+            <p style="color:white ; margin-top:20px; font-size: 20px;">1.1 Lógica y algoritmos</p>
+            <p style="color: white; text-align: justify; margin-top:20px;" >La lógica es la forma mas sencilla de resolver un problema</p>
+            <p style="color: white; text-align: justify; margin-top:20px;" >  
+                Un algoritmo informático es una secuencia de instrucciones finitas que llevan a cabo una serie de procesos para dar respuesta a determinados problemas. 
+             </p>
+             <img style="margin-top: 20px; margin-left: 80px;" src="{% static "img/algoritmo.png" %}"  alt="..." width="500px" height="300px">
+        </div>
+        <div class="tab-pane " id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+          Some placeholder content in a paragraph relating to "Settings". And some more content, used here
+          just to pad out and fill this tab panel. In production, you would obviously have more real content
+          here. And not just text. It could be anything, really. Text, images, forms.
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
