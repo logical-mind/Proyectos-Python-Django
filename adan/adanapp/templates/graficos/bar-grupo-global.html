@@ -1,0 +1,88 @@
+
+
+
+<div   class="ui segment" id="bar-global" style="width:100%; height:100%; max-width:850px; max-height:566.66666666667px; margin-left:auto; margin-right:auto; overflow-x: auto; overflow-y: hidden;">
+    <div id="bar-global2" style="width: 850px; height: 566.667px; position: relative;" _echarts_instance_="ec_1689538564536">
+      <div style="overflow: hidden; position: relative; width: 850px; height: 567px; background: transparent; cursor: default;">
+             <div style="margin-top: 65px;" class="container">
+                <canvas id="MyChart"></canvas>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+
+<script>
+new Chart(document.getElementById("MyChart"), {
+  type: 'bar',
+  data: {
+    labels: ['Total', 'Hombres', 'Mujeres'],
+    datasets: [{
+      label: "Total",
+      type: "bar",
+      stack: "Base",
+      backgroundColor: "rgb(255, 113, 11)",
+      data: [30, 13, 17],
+    },{
+      label: "Jovenes",
+      type: "bar",
+      stack: "Sensitivity",
+      backgroundColor: "#f8981f",
+      data: [20, 21, 5],
+      barPercentage: 0.7,
+    },
+    {
+      label: "Adultos",
+      type: "bar",
+      stack: "Base2",
+      backgroundColor: "#eece01",
+      data: [30, 31, 7],
+      barPercentage: 0.7,
+    },
+    {
+      label: "Envejecientes",
+      type: "bar",
+      stack: "Base3",
+      backgroundColor: "#eece01",
+      data: [30, 31, 5],
+      barPercentage: 0.7,
+    }
+  ]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+          maxRotation: 0,
+          minRotation: 0
+        }
+      }],
+      yAxes: [{
+        stacked: true,
+      }]
+    },
+    ticks: {
+            display: true,
+            beginAtZero: true,
+          },
+    plugins: {
+      datalabels: {
+        
+        display: function(context) {
+          return context.dataset.data[context.dataIndex] !== 0; // Oculta las etiquetas si el valor es 0
+        },
+        color: 'black',
+        font: {
+          weight: 'bold'
+        },
+        formatter: function(value, context) {
+          return context.dataset.label + ': ' + value; // Muestra el nombre de la barra y su valor
+        }
+      }
+    }
+  }
+});
+</script>

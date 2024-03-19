@@ -1,0 +1,305 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pago %}
+
+<style>
+    @import url(//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800);
+.pricing3 {
+  font-family: "Montserrat", sans-serif;
+	color: #8d97ad;
+  font-weight: 300;
+}
+
+.pricing3 h1, .pricing3 h2, .pricing3 h3, .pricing3 h4, .pricing3 h5, .pricing3 h6 {
+  color: #3e4555;
+}
+
+.pricing3 .font-weight-medium {
+	font-weight: 500;
+}
+
+.pricing3 .bg-light {
+    background-color: #f4f8fa !important;
+}
+
+.pricing3 .subtitle {
+    color: #8d97ad;
+    line-height: 24px;
+}
+
+.pricing3 .col-lg-2 {
+  padding-right: 0px;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing3 .col-lg-10 {
+  padding-left: 0px;
+}
+
+.pricing3 .nav-pills {
+  border: 1px solid rgba(120, 130, 140, 0.13);
+  border-radius: 4px;
+  border-right: 0px;
+}
+
+.pricing3 .nav-pills .nav-link {
+  padding: 30px 25px;
+}
+
+.pricing3 .nav-pills .nav-link h2 {
+  color: #8d97ad;
+}
+
+.pricing3 .nav-pills .nav-link.active {
+  background: #ffffff;
+  border-left: 3px solid #ff4d7e;
+  border-radius: 0px;
+  margin-left: -3px;
+  -webkit-box-shadow: -20px 0 40px rgba(0, 0, 0, 0.1);
+  box-shadow: -20px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+.pricing3 .nav-pills .nav-link.active h2 {
+  color: #263238;
+}
+
+.pricing3 .tab-content {
+  background: #ffffff;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+}
+
+.pricing3 .tab-content .pricing-box {
+  padding: 50px 80px;
+}
+
+.pricing3 .tab-content .list-inline {
+  margin-top: 20px;
+}
+
+.pricing3 .tab-content .list-inline li {
+  padding: 30px 0;
+  font-weight: 400;
+}
+
+.pricing3 .tab-content .list-inline li span {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.pricing3 .tab-content .list-inline li i {
+  font-size: 40px;
+  vertical-align: middle;
+  width: 80px;
+  opacity: 0.5;
+}
+
+.pricing3 .tab-content .bg-image {
+  background-size: cover;
+}
+
+.pricing3 .tab-content .bg-image .quote-box {
+  padding: 40px;
+}
+
+.pricing3 .btn-danger-gradiant {
+  background: #ff4d7e;
+  background: -webkit-linear-gradient(legacy-direction(to right), #ff4d7e 0%, #ff6a5b 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#ff4d7e), to(#ff6a5b));
+  background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+  background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+}
+
+ .pricing3 .btn-danger-gradiant:hover {
+  background: #ff6a5b;
+  background: -webkit-linear-gradient(legacy-direction(to right), #ff6a5b 0%, #ff4d7e 100%);
+  background: -webkit-gradient(linear, left top, right top, from(#ff6a5b), to(#ff4d7e));
+  background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+  background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+}
+
+.pricing3 .btn-md {
+    padding: 15px 45px;
+    font-size: 16px;
+}
+
+.pricing3 .display-5 {
+    font-size: 3rem;
+}
+
+@media (max-width: 767px) {
+  .pricing3 .col-lg-2 {
+    padding-right: 15px;
+  }
+  .pricing3 .col-lg-10 {
+    padding-left: 15px;
+  }
+  .pricing3 .nav-pills {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+    -webkit-flex-direction: row !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important;
+    border-bottom: 0px;
+    border-right: 1px solid rgba(120, 130, 140, 0.13);
+  }
+  .pricing3 .nav-pills .nav-link {
+    padding: 25px 18px;
+  }
+  .pricing3 .nav-pills .nav-link.active {
+    border-left: 0px;
+    border-top: 3px solid #ff4d7e;
+    margin-top: -4px;
+    margin-left: 0px;
+    margin-bottom: -1px;
+    -webkit-box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+  }
+  .pricing3 .tab-content .pricing-box {
+    padding: 20px;
+  }
+}
+</style>
+
+
+<div style="margin-top: 30px;" class="pricing3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2 col-md-3 align-self-center">
+          <div class="nav flex-column nav-pills" role="tablist">
+            <a class="nav-link " data-toggle="pill" href="#p3-1" role="tab" aria-expanded="true">
+              <h2>$0</h2>
+              <h6 class="subtitle">Free</h6>
+            </a>
+            <a class="nav-link active" data-toggle="pill" href="#p3-2" onclick="plan('9')" role="tab" aria-expanded="true">
+              <h2>$9<small>/m</small></h2>
+              <h6 class="subtitle">Catálogo</h6>
+            </a>
+            <a class="nav-link" data-toggle="pill" href="#p3-3" onclick="plan('18')" role="tab" aria-expanded="true">
+              <h2>$18<small>/m</small></h2>
+              <h6 class="subtitle">Bot/Catálogo</h6>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-9">
+          <div class="tab-content">
+
+            <div class="tab-pane fade" id="p3-1" role="tabpanel">
+              <div class="row">
+                <!-- Column  -->
+                <div class="col-lg-7">
+                  <div class="pricing-box">
+                    <h2 class="text-uppercase title mb-0">Free</h2>
+                    <h6 class="subtitle">Catálogo EURUSD / EURUSD-OTC</h6>
+                    <ul class="list-inline">
+                      <li><i class="text-center overflow-hidden d-inline-block icon-picture"><img src="{% static "img/eurusd.png" %}" alt="Portada" width="80px"></i> <span>1 Divisa <br/>EURUSD | EURUSD-OTC</span></li>
+                      <li><i class="text-center overflow-hidden d-inline-block icon-camrecorder"><img src="{% static "img/mg5.jpg" %}" alt="Portada" width="60px"></i> <span>2 cuadrantes <br/>24 | 48 </span></li>
+                      <li><i class="text-center overflow-hidden d-inline-block icon-people"><img src="{% static "img/after_loss.jpg" %}" alt="Portada" width="55px"></i><span>Estadística de pérdidas<br/>After Loss | 1-10</span></li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                      <span class="display-5 text-dark mr-3 vm font-weight-medium">USD $0 </span>
+                      <a style="margin-left: 30px;" class="btn btn-danger-gradiant btn-md border-0 text-white rounded-pill" href="/catalogo/free"><span> ENTRAR <i class="ti-arrow-right"></i></span></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Column  -->
+                <div class="col-lg-5 bg-image text-center align-items-end position-relative d-flex" style="background-image:url(https://i.ibb.co/YjgyDcg/free.jpg)">
+                  <div class="quote-box">
+                    <h3 class="text-white font-weight-light mb-4">I am using this plan for last two years and i am very much impressed with the quality ...</h3>
+                    <h6 class="text-white">Hanna Gover</h6>
+                  </div>
+                </div>
+                <!-- Column  -->
+              </div>
+            </div>
+
+
+            <div class="tab-pane fade active show" id="p3-2" role="tabpanel">
+              <div class="row">
+                <!-- Column  -->
+                <div class="col-lg-7">
+                  <div class="pricing-box">
+                    <h2 class="text-uppercase title mb-0">Regular</h2>
+                    <h6 class="subtitle">Full catálogo</h6>
+                    <ul class="list-inline">
+                        <li><i class="text-center overflow-hidden d-inline-block icon-picture"><img src="{% static "img/eurusd.png" %}" alt="Portada" width="80px"></i> <span>Todas las Divisas <br/>BINARIAS | OTC</span></li>
+                        <li><i class="text-center overflow-hidden d-inline-block icon-camrecorder"><img src="{% static "img/mg5.jpg" %}" alt="Portada" width="60px"></i> <span>Todos los cuadrantes <br/>24 | 48 | 96 | 192 </span></li>
+                        <li><i class="text-center overflow-hidden d-inline-block icon-people"><img src="{% static "img/after_loss.jpg" %}" alt="Portada" width="55px"></i><span>Estadística de pérdidas<br/>After Loss | 1-10</span></li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                      <span class="display-5 text-dark mr-3 vm font-weight-medium">USD $9</span>   
+                      <a style="margin-left: 30px;" class="btn btn-danger-gradiant btn-md border-0 text-white rounded-pill" href="/subscription/regular"><span> SUBSCRIBE <i class="ti-arrow-right"></i></span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Column  -->
+                <div class="col-lg-5 bg-image text-center align-items-end position-relative d-flex" style="background-image:url(https://i.ibb.co/YjgyDcg/free.jpg)">
+                  <div class="quote-box">
+                    <h3 class="text-white font-weight-light mb-4">I am using this plan for last two years and i am very much impressed with the quality ...</h3>
+                    <h6 class="text-white">Hanna Gover</h6>
+                  </div>
+                </div>
+                <!-- Column  -->
+              </div>
+            </div>
+            <div class="tab-pane fade" id="p3-3" role="tabpanel">
+              <div class="row">
+                <!-- Column  -->
+                <div class="col-lg-7">
+                  <div class="pricing-box">
+                    <h2 class="text-uppercase title m-b-0">Premium</h2>
+                    <h6 class="subtitle">Bot & Catálogo</h6>
+                    <ul class="list-inline">
+                        <li><i class="text-center overflow-hidden d-inline-block icon-picture"><img src="{% static "img/eurusd.png" %}" alt="Portada" width="80px"></i> <span>Bot <br/>BINARIAS | OTC</span></li>
+                        <li><i class="text-center overflow-hidden d-inline-block icon-picture"><img src="{% static "img/eurusd.png" %}" alt="Portada" width="80px"></i> <span>Todas las Divisas <br/>BINARIAS | OTC</span></li>
+                        <li><i class="text-center overflow-hidden d-inline-block icon-camrecorder"><img src="{% static "img/mg5.jpg" %}" alt="Portada" width="60px"></i> <span>Todos los cuadrantes <br/>24 | 48 | 96 | 192 </span></li>
+                    </ul>
+                    <div class="d-flex align-items-center">
+                      <span class="display-5 text-dark mr-3 font-weight-medium">USD $18</span>
+                      <a style="margin-left: 30px;" class="btn btn-danger-gradiant btn-md border-0 text-white rounded-pill" href="/subscription/premium"><span> SUBSCRIBE <i class="ti-arrow-right"></i></span></a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Column  -->
+                <div class="col-lg-5 bg-image text-center align-items-end position-relative d-flex" style="background-image:url(https://i.ibb.co/z70Xmph/premiun.jpg)">
+                  <div class="quote-box">
+                    <h3 class="text-white font-weight-light mb-4">I am using this plan for last two years and i am very much impressed with the quality ...</h3>
+                    <h6 class="text-white">Hanna Gover</h6>
+                  </div>
+                </div>
+                <!-- Column  -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script>
+const plan = async (plan) => {
+    try {
+            const response=await fetch("./subscription_value/", {
+               method: "POST",
+               body: JSON.stringify({'plan':plan}),
+               });
+            const data=await response.json();
+
+            document.getElementById('id_a3').value = plan
+        }catch(error){}    
+}
+</script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  {% endblock %}

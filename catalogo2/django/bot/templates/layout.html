@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalobot</title>
+</head>
+
+
+
+<body class="cuerpo" style="background: #191437;">
+  <style>
+		.v18_3 {
+  width: 376px;
+  height: 376px;
+  background: rgba(27,152,222,1);
+  opacity: 0.4;
+  position: absolute;
+  top: 474px;
+  left: 200px;
+  border-radius: 50%;
+  filter: blur(250px);
+  z-index: -1;
+}
+.v18_4 {
+  width: 376px;
+  height: 376px;
+  background: rgba(0,241,198,1);
+  opacity: 0.4;
+  position: absolute;
+  top: -95px;
+  right: 0;
+  border-radius: 50%;
+  filter: blur(250px);
+  z-index: -1;
+}
+	</style>
+  <div class="v18_3"></div>
+	<div class="v18_4"></div>
+
+  <style>
+  
+  .dropdown-menu{
+    right: 0;
+    left: unset;
+  }
+  .fa-fw{
+    margin-right: 10px;
+  }  
+
+
+  .toggle-change::after {
+    border-top: 0;
+    border-bottom: .3em solid;
+    }
+
+  </style>
+<!-- Navbar -->
+
+{% if request.user.is_authenticated %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    
+    <div class="container-fluid">
+ 
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/catalogo/bot">Catalobot</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/foro/bot">Foro</a>
+          </li>
+          <li class="nav-item">
+             <a class="nav-link" href="/manual"><i class="bi bi-journal-check"></i> Manual</a>
+          </li>
+          <li class="nav-item">
+            <a style="cursor: pointer;"  class="nav-link" id="historialLink">Historial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/senales">Señales</a>
+          </li>
+        </ul>
+          
+        <div class="row">
+          <div style="margin-top: 7px;" id='mensaje' class="col"> 
+            {% if request.user.is_authenticated %}     
+            <div style="color: white;">
+              {{ request.user.username }}
+            </div>
+            {% endif %}
+
+           </div>
+          <div class="col"> 
+            {% if request.user.is_authenticated %}
+            <button onclick="location.href='/logout'" class="btn btn-primary"
+            style="
+              margin-top: 0px; filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));width: 140px;
+              height: 40px;
+              margin-top: 0px;
+              color: #35b8ff;
+              border: 2px solid #00a7ff;
+              border-radius: 73px; 
+              font-weight: 300;
+              font-size: 16px;
+              line-height: 25px;
+              background-color:transparent;"
+            > Logout</button>
+            {% else %}
+            <button 
+            style="
+              margin-top: 0px;
+              margin-top: 0px; filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));width: 140px;
+              height: 40px;
+              color: #35b8ff;
+              border: 2px solid #00a7ff;
+              border-radius: 73px; 
+              font-weight: 300;
+              font-size: 16px;
+              line-height: 25px;
+              background-color:transparent;"
+             onclick="location.href='/login-page'" class="btn btn-primary"> Login</button>
+            {% endif %}
+          </div>
+
+          <div id="btn_register" class="col">
+            {% if request.user.is_authenticated %}
+            {% else %}
+          </div>
+            {% endif %}
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </nav>
+ {% endif %}
+
+
+
+
+
+  <script>
+    document.querySelectorAll('.dropdown-toggle').forEach(item => {
+  item.addEventListener('click', event => {
+ 
+    if(event.target.classList.contains('dropdown-toggle') ){
+      event.target.classList.toggle('toggle-change');
+    }
+    else if(event.target.parentElement.classList.contains('dropdown-toggle')){
+      event.target.parentElement.classList.toggle('toggle-change');
+    }
+  })
+});
+
+  </script>
+<!-- Navbar -->
+  
+	
+    
+{% block catalogo %}
+{% endblock %}
+{% block pago %}
+{% endblock %}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</body>
+
+
+
+
+
+<footer hidden style="margin-left: 11%; margin-right: 11%; margin-top: 100px;">
+       <div class="w-full mt-2 border-t-2 border-purple text-center flex flex-col items-center mt-16"><div class="max-w-screen-xl my-2"><p class="font-bold text-white mb-2">Texto Legal</p> 
+       <p class="text-white">Todas las estrategias e inversiones implican riesgo de pérdida. Ninguna de la información contenida en este producto debe interpretarse como un consejo de inversión.
+        Cualquier referencia al rendimiento pasado o potencial de una inversión no es, y no debe interpretarse como una recomendación o garantía de ningún resultado o beneficio específico.
+
+        <a href="https://www.flaticon.com/free-icons/time" title="time icons">Time icons created by Freepik - Flaticon</a>
+</footer>
+</html>

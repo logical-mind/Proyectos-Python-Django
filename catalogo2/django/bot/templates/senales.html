@@ -1,0 +1,248 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pago %}
+
+
+
+<style>
+    table {
+border: 1px solid #ccc;
+border-collapse: collapse;
+margin: 0;
+padding: 0;
+width: 100%;
+table-layout: fixed;
+}
+
+table caption {
+font-size: 1.5em;
+margin: .5em 0 .75em;
+}
+
+table tr {
+background-color: #f8f8f8;
+border: 1px solid #ddd;
+padding: .35em;
+}
+
+table th,
+table td {
+padding: .625em;
+text-align: center;
+}
+
+table th {
+font-size: .85em;
+letter-spacing: .1em;
+text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+table {
+    border: 0;
+}
+
+table caption {
+    font-size: 1.3em;
+}
+
+table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+}
+
+table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+}
+
+table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table td:last-child {
+    border-bottom: 0;
+}
+}
+
+</style>
+   
+
+<style>
+    /* Estilos adicionales si es necesario */
+    .boton {
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div  class="container-fluid">
+<div style="margin-top: 14px; margin-bottom: 0px;" class="row">
+     <div class="col">
+            <div>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary active" >M1</button>
+                    <button type="button" class="btn btn-primary">M5</button>
+                    <button type="button" class="btn btn-primary">M15</button>
+                    <button type="button" class="btn btn-success">M30</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div style="width: 80%;" class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input  type="number" class="form-control" aria-label="Importe (to the nearest dollar)">
+                <span class="input-group-text">.00</span>
+            </div>
+      
+        </div>
+     
+        <div class="col">   
+     
+            <div style="width: 80%;" class="input-group mb-3">
+                <span  class="input-group-text" id="inputGroup-sizing-default">Martingala</span>
+                <input style="width: 100px;" type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+        </div>
+
+        <div class="col">
+                    <button type="button" onclick="buy_senales()" class="btn btn-success">Start</button>
+                    <button type="button" class="btn btn-danger">Stop</button>
+                    <button style="margin-left: 28px;" type="button" class="btn btn-info">Add +</button>
+
+
+        </div>
+</div>
+  
+<table>
+    <thead>
+    <tr>   
+            <th scope="col">Go</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Par</th>
+            <th scope="col">Acción</th>
+            <th scope="col">Período</th>
+            <th scope="col">Estado</th>
+    </tr>
+    </thead>
+    <tbody id="senal">
+    
+    </tbody>
+</table>
+
+</div>
+
+
+<script>
+
+    function buy_senales() {
+       
+
+        fetch("/buy_senales")
+                .then(response => response.json())
+                .then(data => {
+
+
+                });
+            }              
+</script>
+     
+<script>
+    function senales() {
+        var tabla2 = ''; // Declaración de la variable fuera del bucle
+
+        fetch("/senales2")
+                .then(response => response.json())
+                .then(data => {
+                // Función que se ejecuta si la solicitud es exitosa.
+                 for (var i = 0; i < data.length; i++) {
+                    var img_divisas
+                    var acciones
+                    var color
+                    var senal = data[i];
+                    
+                    if(data[i].divisa == "EURUSD"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/eurusd.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "EURJPY"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/eurjpy.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "GBPUSD"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/gbpusd.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "GBPJPY"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/gbpjpy.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "AUDCAD"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/audcad.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "USDCHF"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/usdchf.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "NZDUSD"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/nzdusd.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "EURGBP"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/eurgbp.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "AUDUSD"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/audusd.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "XRPUSD"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/xrpusd.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "USDJPY"){img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/usdjpy.png' %}" alt="Portada">`}
+                    if(data[i].divisa == "AUDJPY") {img_divisas = `<img width="25" height="25" src="{% static 'img/divisas/audjpy.png' %}" alt="Portada">`}
+
+                    if(data[i].accion == "call"){acciones = `<img  height="40" src="{% static 'img/call.png' %}" alt="Portada">`}
+                    if(data[i].accion == "put"){acciones = `<img  height="40" src="{% static 'img/put.png' %}" alt="Portada">`}
+
+                    //if(data[i].resultado == "win"){color = `<td style="color:green" data-label="Resultado">${senal.resultado}</td>`}
+                    //if(data[i].resultado == "lose"){color = `<td style="color:red" data-label="Resultado">${senal.resultado}</td>`}
+                    //if(data[i].resultado == "doji"){color = `<td style="color:gray" data-label="Resultado">${senal.resultado}</td>`}
+                    //if(data[i].resultado == "wait..."){color = `<td style="color:blue" data-label="Resultado">${senal.resultado}</td>`}
+
+                    tabla2 += `<tr style="color:green;">
+                                  <td><input type="checkbox" class="checkbox" id="senal${i}"></td>
+                                  <td style="width:20px;" data-label="Estado">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
+                                        <path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9z"/>
+                                        <path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1zm1.038 3.018a6 6 0 0 1 .924 0 6 6 0 1 1-.924 0M0 3.5c0 .753.333 1.429.86 1.887A8.04 8.04 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5M13.5 1c-.753 0-1.429.333-1.887.86a8.04 8.04 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1"/>
+                                        </svg>
+                                    ${senal.hora}</td>
+
+                                  <td data-label="Divisas">${img_divisas} ${senal.divisa}</td>
+                                  <td data-label="Acciones">${acciones}</td>
+                                  <td data-label="Periodo">M${senal.periodo}</td>
+                                  <td data-label="Estado">none</td>
+                             </tr>`;
+                }
+
+                // Asegúrate de que el elemento con ID 'tabla_historial' exista en tu HTML
+                var tablaHistorialElement = document.getElementById('senal');
+                if (tablaHistorialElement) {
+                    tablaHistorialElement.innerHTML = tabla2;
+                } else {
+                    console.error("El elemento con ID 'tabla_historial' no se encontró en el HTML.");
+                }
+            })
+            .catch(error => {
+                console.error("Error durante la solicitud fetch:", error);
+            });
+    }
+
+    // Llama a la función senales al cargar la página
+    senales();
+</script>
+
+ 
+    
+  
+
+  
+
+
+
+{% endblock%}

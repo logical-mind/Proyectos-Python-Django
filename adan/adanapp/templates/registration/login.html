@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block login %}
+
+<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+
+<div style="text-align: center; margin-top: 80px;">
+    <div class="row" style="width: 85%; margin: 0 auto; border-radius: 30px; height: 500px;">
+    
+          <div class="col" style="background: #FFFFFF; width: 100%; height: 100%; border-top-left-radius:30px; border-bottom-left-radius:30px;">
+            <h3 style="
+                margin-top: 50px;
+                font-family: 'Aharoni';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 40px;
+                line-height: 45px;
+                color: #002C44;
+
+                ">iniciar sesión</h3>
+   <form method="post" style="text-align: center; margin-left: 35px; margin-right: 35px;">
+     {% csrf_token %}
+    <div style="margin-top: 50px;" class="form-group">
+        <label for="usr">Username:</label>
+        <input type="text" name="username" class="form-control" id="usr">
+    </div>
+    <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" name="password" class="form-control" id="pwd">
+    </div>       
+
+
+        <input  style=" margin-top: 70px; width: 80%; height: 35px; border-radius: 40px; background-color: #002C44; color: white; font-family: 'Aharoni'; font-size: 19px; border: 0; " value="Iniciar Sesión" type="submit">
+    </form>
+
+            </div>
+
+          <div class="col-7" style=" text-align: center; background-image: url('https://i.ibb.co/x8vhpt6/Rectangle-3.png'); background-size: 100%;"> 
+           <img style="margin-top: 70px;" width="390px" src="https://i.ibb.co/6XV25j0/image-7-1.png" alt="image-7-1">
+
+           
+          </div>
+      
+    </div>
+</div>
+
+
+<style>
+   
+
+body {
+    background-color: #020305;
+     }
+</style>
+
+ {% endblock %}

@@ -1,0 +1,1701 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block board %}
+
+<head>
+<script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+<script src="https://kit.fontawesome.com/29fe69b771.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{% static 'css/sidebar/table.css' %}">	
+<link rel="stylesheet" href="{% static 'css/validacion.css' %}">
+<link rel="stylesheet" href="{% static 'css/advice.css' %}">
+
+
+<link rel="stylesheet" href="{% static 'css/sidebar/style.css' %}">
+
+<!--<link rel="stylesheet" href="{% static 'css/formulario.css' %}"> -->	
+<!--<link rel="stylesheet" href="{% static 'css/card.css' %}"> -->
+
+
+<!-- select -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+<!-- select -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+
+<body style="background: #191437;">
+
+<style>
+.alert{
+	
+    position:fixed; 
+    top: 0px; 
+    left: 0px; 
+    width: 100%;
+    z-index:9999; 
+    border-radius:0px
+}
+
+.v18_3 {
+  width: 30%;
+  height: 30%;
+  background: rgba(27,152,222,1);
+  opacity: 1;
+  position: absolute;
+  top: 474px;
+  left: 100px;
+  border-radius: 50%;
+  filter: blur(150px);
+}
+.v18_4 {
+  width: 30%;
+  height: 30%;
+  background: rgba(0,241,198,1);
+  opacity: 1;
+  top: -95px;
+  right: 0;
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(250px);}
+
+.v18_5 {
+    width: 100%;
+    height: 100%;
+    background: url('https://i.ibb.co/CKtVQHg/1.png');
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.2;
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    overflow: hidden;
+	box-shadow: inset 0px 0px 40px 40px #191437;
+	z-index: -1;
+}
+
+.v18_6 {
+    width: 100%;
+    height: 100%;
+    background: url('https://i.ibb.co/CKtVQHg/1.png');
+    margin-top: 460px;
+    background-position: center center;
+    background-size: 100%;
+    opacity: 0.2;
+    position: absolute;
+    top: 1px;
+    left: 0px;
+    overflow: hidden;
+	box-shadow: inset 40px 40px 80px 80px #191437;
+	z-index: -1;
+	
+	
+}
+
+	</style>
+	<div class="v18_6"></div>
+	<div class="v18_5"></div>
+	<div class="v18_3"></div>
+	<div class="v18_4"></div>
+	
+
+	
+
+<!-- AVISOS -->
+	  <div id="myModal" class="modal fade">
+		<div class="modal-dialog modal-confirm">
+		  <div class="modal-content">
+			<div style="text-align: center; margin-left: 39%;" class="modal-header">
+				    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+					<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+				 	<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+				    </svg>
+			</div>
+			
+			    <h4 class="modal-title">¿Estás Seguro?</h4>
+			    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			
+			<div class="modal-body">
+			  <p>Realmente deseas eliminar este miembro? Este proceso no puede ser revertido.</p>
+			</div>
+			<div style="margin-right: 19%;" class="modal-footer">
+			  <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+			  <button id="delete_btn" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+			</div>
+		  </div>
+		</div>
+	  </div>  
+	  <div id="notify"></div>
+<!--AVISOS-->
+
+
+<!--BARRA LATERAL-->	
+
+<div  class="wrapper d-flex align-items-stretch">
+		
+	  <nav style="background: #000B1C; opacity: 0.8; border-radius: 10px;" id="sidebar">
+		
+			    <div class="p-4 pt-4">
+                         <div class="row">
+							<div class="col"> 
+								
+								<div class="dropdown">
+								  <button class="dropdown-toggle"  style="background: transparent; border: 0; margin-top: 12px; margin-right: 10px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									    <svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+										<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+									  </svg>
+								  </button>	
+								  <div style="background: rgba(30, 77, 120, 0.85); border: none;" class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+									<a class="dropdown-item" href="#"><i style="color: white; font-size: 25px;" class="bi bi-person-plus-fill"></i>Agregar Coordinador</a>
+									<a class="dropdown-item" href="#"><i style="color: white; font-size: 25px;" class="bi bi-gear-fill"></i>Configuración</a>
+									<a class="dropdown-item" href="/salir"><i style="color: white; font-size: 25px;" class="bi bi-box-arrow-right"></i>Salir</a>
+								  </div>
+								</div>
+							</div>
+						 </div>
+				<ul style="margin-top: 15px; list-style: none" id="me"class="list-unstyled components mb-5">
+							
+				</ul>
+
+			    </div>
+	  </nav>
+	 
+<!--BARRA LATERAL-->
+
+
+
+      <!--<div style="margin-left: 94%; position:absolute; margin-top: 7px;">
+		<a href="/salir" type="button" class="btn btn-secondary btn-sm"> <i class="bi bi-box-arrow-right"></i> Salir  </a>
+	</div>-->
+
+<div id="content" class="p-4 p-md-5">
+
+<!-- NAVEGADOR -->	
+<style>
+	#logo {
+	  width: 310px; /* Tamaño original de la imagen */
+	}
+	#generales{
+		display: block;
+	}
+	#generales1{
+		display: block;
+	}
+	#generales2{
+		display: none;
+	}
+
+	
+  
+	@media (max-width: 500px) {
+	  #logo {
+		margin-top: 5px;
+		width: 250px; /* Cambiar el tamaño de la imagen al 100% del ancho del contenedor */
+	  }
+      #generales{
+		display: none;
+	  }
+	  #generales1{
+		display: none;
+	}
+	#generales2{
+		display: block;
+	}
+
+	  
+	}
+
+	@media (max-width: 400px) {
+	  #logo {
+		margin-top: 8px;
+		width: 200px; /* Cambiar el tamaño de la imagen al 100% del ancho del contenedor */
+	  }
+	 
+	}
+
+	@media (max-width: 340px) {
+	  #logo {
+		margin-top: 10px;
+		width: 180px; /* Cambiar el tamaño de la imagen al 100% del ancho del contenedor */
+	  }
+	}
+	@media (max-width: 300px) {
+	  #logo {
+		margin-top: 15px;
+        
+		margin-right: 20px;
+		width: 100%; /* Cambiar el tamaño de la imagen al 100% del ancho del contenedor */
+	  }
+	}
+
+
+  </style>
+
+
+	  <nav class=""
+		style="
+		background-color: #000B1C;
+		opacity: 0.8;
+		border-radius: 9px; height: 65px;">
+        <div class="row">
+			<div style="margin-top: 7px; margin-left: 40px;" class="col">
+				<img id="logo" src="{% static 'img/logo_barra.png' %}" alt="">
+			</div>
+			
+			<div id="generales1" class="col-2" style="text-align: right;">
+		    <button  style="background: transparent; border: 0; margin-top: 12px; margin-right: 10px;" type="button" id="sidebarCollapse">
+
+			<svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+				<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+			</svg>
+
+			<span class="sr-only">Toggle Menu</span>
+		  </button>
+
+		   </div>
+		</div>
+
+	  </nav>
+ 
+<!-- NAVEGADOR -->	
+
+
+<div id="generales" style="margin-top: 15px;">
+<h3 style="color: white;
+font-family: 'Aclonica';
+font-style: normal;
+font-weight: 300;
+font-size: 35px;
+line-height: 45px;
+color: #FFFFFF;
+">Datos Generales</h3>
+</div>
+
+<button id="generales2"  style="background: transparent; border: 0; margin-top: 12px; margin-right: 10px;" type="button" id="sidebarCollapse">
+
+	<svg style="color: white;" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+		<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+	</svg>
+
+	<span class="sr-only">Toggle Menu</span>
+</button>
+
+<!-- CARTAS -->
+<div style="margin-top: 15px;" class="grey-bg ">
+  <section id="minimal-statistics">
+
+	<div class="row g-2">
+
+		<div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_total.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_votantes" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="restan_votantes" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Restan: 0</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top: 2px;">
+					<div id="barra_votantes" class="progress-bar bg-primary" role="progressbar" style="width: 50%; border-radius: 10px;"></div>
+				</div>
+			
+			</div>
+		</div>
+
+
+		<div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_hombres.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_masculino" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="porciento_masculino" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Hombres: 0%</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top:2px;">
+					<div id="barra_masculino" class="progress-bar bg-primary" role="progressbar" style="width: 50%; border-radius: 10px;"></div>
+				</div>
+			
+			</div>
+		</div>
+
+		<div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_mujer.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_femenino" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="porciento_femenino" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Mujeres: 0%</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top: 2px;">
+					<div id="barra_femenino" class="progress-bar" role="progressbar" style="width: 50%; border-radius: 10px; background: #FF710B;"></div>
+				</div>
+			
+			</div>
+		</div>
+		
+		<div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_joven.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_jovenes" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="porciento_jovenes" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Jovenes: 0%</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top: 2px;  margin-bottom: 5px">
+					<div id="barra_jovenes" class="progress-bar bg-primary" role="progressbar" style="width: 50%; border-radius: 10px;"></div>
+				</div>
+			
+			</div>
+		</div>
+	
+    </div>
+
+	<div style="margin-top:2px" class="row g-2">
+
+		<div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_adulto.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_adultos" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="porciento_adultos" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Adultos: 0%</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top: 2px;">
+					<div id="barra_adultos" class="progress-bar bg-primary" role="progressbar" style="width: 50%; border-radius: 10px;"></div>
+				</div>
+			
+			</div>
+		</div>	
+
+
+		<div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_mayor.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_mayores" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="porciento_mayores" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Mayores: 0%</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top: 2px;">
+					<div id="barra_mayores" class="progress-bar bg-primary" role="progressbar" style="width: 50%; border-radius: 10px;"></div>
+				</div>
+			
+			</div>
+		</div>
+  
+        <div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="45" src="{% static 'img/ico_voto.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-3">
+				<div><h3 id="total_adultos" style="color: azure; font-size: 25px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">Total: 0</h3> </div>
+				<div><h3 id="porciento_adultos" style="color: azure; font-size: 18px; font-weight: 400; text-align: right; margin-right: 6px;">Votos: 0%</h3> </div> 
+			    </div>	
+			</div>
+
+				<div class="progress" style="height: 16px; border-radius: 10px; margin-left: 10px; margin-right: 10px; margin-top: 2px; margin-bottom: 5px">
+					<div id="barra_adultos" class="progress-bar bg-primary" role="progressbar" style="width: 50%; border-radius: 10px;"></div>
+				</div>
+			</div>
+		</div>
+
+        <div class="col-xl-3 col-sm-6 col-12">
+			<div  style="background: radial-gradient(50% 50% at 50% 50%, #00A3FF 0%, #003C74 100%); border-radius: 0px; height: 100%;">
+
+			<div class="row">
+				<div class="col mt-4 ml-3">
+					 <img width="35" src="{% static 'img/ico_trofeo.png' %}" alt="">
+				</div>
+
+				<div class="col-8 mt-2">
+				<div><h3  style="color: azure; font-size: 15px; font-weight: 400; text-align: right; margin-right: 6px;">13/45/2023</h3> </div> 	
+				<div><h3  style="color: azure; font-size: 20px;  font-weight: 400; text-align: right; margin-right: 6px;" class="success">María Isabel Rodríguez</h3> </div>
+				
+			    </div>	
+			</div>
+
+			<div><h3 id="porciento_adultos" style="color: azure; font-size: 15px; font-weight: 400; text-align: right; margin-right: 6px;">Coordinador Destacado</h3> </div> 
+			
+			</div>
+		</div>
+
+	</div>
+
+
+  </section>
+</div>
+<!-- CARTAS -->
+
+<!-- GRAFICOS -->
+<div style="background: white; margin-top: 50px; border-radius: 13px;" id="carouselExampleIndicators" class="carousel slide" data-interval="false" data-ride="carousel">
+	<ol class="carousel-indicators">
+	  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+	  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+	  
+	</ol>
+	<div class="carousel-inner">
+	  <div class="carousel-item active">
+		<div class="row">
+            <div class="col-6">
+                <canvas id="doughnut-chart" width="100%" height="50%"></canvas>
+				
+            </div>
+
+            <div class="col-6">
+                  <canvas id="bar-chart-grouped" width="100%" height="50%"></canvas>
+            </div>
+			  
+        </div>
+
+	  </div>
+	
+	  <div class="carousel-item">
+		<div class="row">
+            <div class="col">
+                <canvas id="line-chart2" width="100%" height="25%"></canvas>
+			</div>
+			
+
+		</div>
+           
+	  </div>
+
+	  
+	</div>
+
+	<a  class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+	  <span  style="border-radius: 50px; width: 40px; height: 40px;" class="carousel-control-prev-icon bg-danger" aria-hidden="true"></span>
+	  <span  class="sr-only">Previous</span>
+	</a>
+
+	<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+	  <span style="border-radius: 50px; width: 40px; height: 40px;" class="carousel-control-next-icon bg-danger" aria-hidden="true"></span>
+	  <span class="sr-only">Next</span>
+	</a>
+
+</div>
+<!-- GRAFICOS -->
+
+<style>
+	@media (min-width: 1200px) {
+	  .responsive-font-example {
+		font-family: 'Sansation';
+		font-size: 28px;
+		margin-left: 20px;
+		margin-top: 0px;
+		color: #036;
+	  }
+
+      .responsive-form {
+	  font-family: 'Sansation'; 
+			  color: white; 
+			  opacity: 0.7;
+			  font-size: 28px;
+			  font-style: normal;
+              font-weight: 400;
+			  margin-left: 14px;
+			  top: 11px;
+			  position: relative;
+	  }
+	}
+	
+	@media (max-width: 1199.98px) {
+	  .responsive-font-example {
+		font-family: 'Sansation';
+		font-size: 20px;
+		margin-left: 20px;
+		color: #036;
+	  }
+
+	  .responsive-form {
+	  font-family: 'Sansation'; 
+			  color: white; 
+			  opacity: 0.7;
+			  font-size: 20px;
+			  font-style: normal;
+              font-weight: 400;
+			  margin-left: 20px;
+			  margin-top: 25px;
+			  position: absolute;
+	  }
+	}
+	</style>
+	<script>
+	  function actualizarContenido() {	
+		const element = document.getElementById('form-responsive');
+		const element2 = document.getElementById('form-responsive2');
+
+		if (window.innerWidth > 1200) {
+		element.innerHTML = 'Despliega para desbloquear columnas';
+		element2.innerHTML = 'Despliega para agregar un nuevo miembro';
+		} else {
+		element.innerHTML = 'Desbloquear columnas';
+		element2.innerHTML = 'Agregar miembro';
+		}
+	}
+
+
+	window.addEventListener('resize', actualizarContenido);
+    document.addEventListener('DOMContentLoaded', actualizarContenido);
+	</script>
+
+
+
+<!-- FORMULARIO -->
+
+<div style="background: rgba(30, 77, 120, 0.58); margin-top: 50px; line-height: 0;" class=" accordion-flush" id="accordionFlushExample">
+	
+	<div style="border: none; background-color: transparent; height: 67px;" id="modificar" class="d-flex justify-content-between button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+		<div class="p-2">
+
+			<svg style="margin: button 20px; margin-left:14px; margin-top:10px;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+				<path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+				<path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"></path>
+			</svg> 
+            <spam id="form-responsive2" class="responsive-form">Despliega para Agregar un nuevo Miembro</spam>
+		
+		</div>
+		<div class="p-2">
+		</div>
+
+		<div class="p-2">
+			<svg id="rotar" style="margin-top:14px;" width="24" height="12" viewBox="0 0 29 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M24.9863 0.510184L28.9063 4.85018L15.8863 16.6102L12.9463 16.6102L0.0663252 4.85018L4.05633 0.510184L14.4163 10.8002L24.9863 0.510184Z" fill="#A9A9A9"/>
+				</svg>
+		</div>
+	   </div>
+
+	  <div class="accordion-item">
+	  <h2  class="accordion-header" id="flush-headingOne"></h2>
+	  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+
+
+
+				<div style="all: initial;" class="container">
+											<style>
+												.select2-container .select2-selection--single {
+														box-sizing: border-box;
+														cursor: pointer;
+														display: block;
+														height: 37px;
+														user-select: none;
+														-webkit-user-select: none;}
+											</style>
+											<form method="post" id="formulario" style="margin-top: 40px;">
+												{% csrf_token %}
+												<div class="row mx-5">
+													<div  class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required form_label" for="id_cedula">Cedula:</label>
+															<input style="width: 100%;" type="text" name="cedula" data-format="***-*******-*" data-mask="" placeholder="xxx-xxxxxxx-x" maxlength="13" required="" id="id_cedula" class="form-control">
+															<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+														</div>
+													</div>
+													
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required form_label" for="id_apellido">Apellido:</label>
+															<input style="width: 100%;" type="text" name="apellido" maxlength="100" required="" id="id_apellido" class="form-control">
+															<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+														</div>
+													</div>
+												</div>
+
+												<div class="row mx-5">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required form_label" for="id_nombre">Nombre:</label>
+															<input style="width: 100%;" type="text" name="nombre" maxlength="100" required="" id="id_nombre" class="form-control">
+															<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_fecha_nacimiento">Nacimiento:</label>
+															<input style="width: 100%;" type="text" name="fecha_nacimiento" data-format="Día: **, Mes: **, Año: ****" data-mask="" placeholder="Día: xx, Mes: xx, Año: xxxx" maxlength="29" required="" id="id_fecha_nacimiento" class="form-control">
+															<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+														</div>
+													</div>
+												</div>
+												<div class="row mx-5">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_telefono">Teléfono:</label>
+															<input style="width: 100%;" type="text" name="telefono" data-format="(***) ***-****" data-mask="" placeholder="(xxx) xxx-xxxx" maxlength="14" required="" id="id_telefono" class="form-control">
+															<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_genero">Genero:</label>
+															<select style="width: 100%;" name="genero" id="id_genero" class="form-control">
+																<option value="M" selected="" data-select2-id="select2-data-8-xv97">Masculino</option>
+																<option value="F">Femenino</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="row mx-5">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_circunscripcion">Circunscripción.:</label>
+															<select style="width: 100%; height: 60px;" name="circunscripcion" class="circunscripcion_select select2-hidden-accessible" required="" id="id_circunscripcion" onchange="seccion2('circunscripcion');editar()" data-select2-id="select2-data-id_circunscripcion" tabindex="-1" aria-hidden="true"></select>
+																				
+														</div>
+
+														<script>
+															$(document).ready(function() {
+																$('.circunscripcion_select').select2();
+												
+															});
+
+														</script> 
+													
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_sector">Sector:</label>
+															<select style="width: 100%; height: 37px;" name="sector" required="" class="sector_select select2-hidden-accessible" id="id_sector" onchange="seccion2('sector');editar()" data-select2-id="select2-data-id_sector" tabindex="-1" aria-hidden="true"></select>
+															<script>
+																// In your Javascript (external .js resource or <script> tag)
+																$(document).ready(function() {
+																	$('.sector_select').select2();
+																});
+															</script>
+														</div>
+													</div>
+												</div>
+												<div class="row mx-5">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_seccion">Seccion:</label>
+															<select style="width: 100%; height: 37px;" name="seccion" class="seccion_select select2-hidden-accessible" required="" id="id_seccion" onchange="editar()" data-select2-id="select2-data-id_seccion" tabindex="-1" aria-hidden="true"></select>
+															<script>
+																// In your Javascript (external .js resource or <script> tag)
+																$(document).ready(function() {
+																	$('.seccion_select').select2();
+																});
+															</script>
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_direccion">Direccion:</label>
+															<input style="width: 100%; height: 37px;" type="text" name="direccion" class="" maxlength="300" required="" id="id_direccion" class="form-control">
+														</div>
+													</div>
+												</div>
+												<div class="row mx-5">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_ocupacion">Ocupacion:</label>
+															<select style="width: 100%; height: 37px;" name="ocupacion" required="" id="id_ocupacion" onchange="editar()" class="ocupacion_select select2-hidden-accessible" data-select2-id="select2-data-id_ocupacion" tabindex="-1" aria-hidden="true">
+																<option value="0" disabled="" selected="" data-select2-id="select2-data-10-x8p5">¿A que te dedicas?</option>
+							
+																<option value="1">Estudiante</option>
+															
+																<option value="2">Independiente</option>
+															
+																<option value="3">Desempleado</option>
+															
+																<option value="4">Emprendedor</option>
+															
+																<option value="5">Profesor</option>
+															
+																<option value="6">Albañil</option>
+															
+																<option value="7">Ebanista</option>
+															
+																<option value="8">Panadero</option>
+															
+																<option value="9">Herrero</option>
+															
+																<option value="10">Electricista</option>
+															
+																<option value="11">Ama De Casa</option>
+															
+																<option value="12">Taxista</option>
+															
+																<option value="13">Chofer</option>
+															
+																<option value="14">Operario</option>
+															
+																<option value="15">Motoconcho</option>
+															
+																<option value="16">Agricultor</option>
+															
+																<option value="17">Musico</option>
+															
+																<option value="18">Arte</option>
+															
+																<option value="19">Pescador</option>
+															
+																<option value="20">Camarero</option>
+															
+																<option value="21">Bartender</option>
+															
+																<option value="22">Seguridad</option>
+															
+																<option value="23">Sastre</option>
+															
+																<option value="24">Modista</option>
+															
+																<option value="25">Cajero</option>
+															
+																<option value="26">Gondolero</option>
+															
+																<option value="27">Secretaria</option>
+															
+																<option value="28">Cajero</option>
+															
+																<option value="29">Colmadero</option>
+															
+																<option value="30">Dependiente De Farmacia</option>
+															
+																<option value="31">Creador De Contenido</option>
+															
+																<option value="32">Conserje</option>
+															
+																<option value="33">Servidor Publico</option>
+															
+																<option value="34">Otro</option>
+															
+																<option value="35">Abogado</option>
+															
+																<option value="36">Arquitecto</option>
+															
+																<option value="37">Ing. Civil</option>
+															
+																<option value="38">Ing. Industrial</option>
+															
+																<option value="39">Medico</option>
+															
+																<option value="40">Enfermero</option>
+															
+																<option value="41">Odontólogo</option>
+															
+																<option value="42">Psicólogo</option>
+															
+																<option value="43">Desarrollador</option>
+															
+																<option value="44">Informático</option>
+															
+																<option value="45">Idiomas</option>
+															
+																<option value="46">Agrónomo</option>
+															
+																<option value="47">Contador</option>
+															
+																<option value="48">Teólogo</option>
+															
+																<option value="49">Hotelería</option>
+															
+																<option value="50">Periodista</option>
+															
+																<option value="51">Comunicador</option>
+															
+																<option value="52">Deportista</option>
+															</select>
+															<script>
+																$(document).ready(function() {
+																$('.ocupacion_select').select2({
+																closeOnSelect: false
+															});
+															});
+															</script>   
+														</div>
+													</div>
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_colegio">Colegio:</label>
+															<select style="width: 100%; height: 37px;" name="colegio" required="" id="id_colegio" class="colegio_select select2-hidden-accessible" data-select2-id="select2-data-id_colegio" tabindex="-1" aria-hidden="true"></select>
+															<script>
+																// In your Javascript (external .js resource or <script> tag)
+																$(document).ready(function() {
+																	$('.colegio_select').select2();
+																});
+															</script>
+														</div>
+													</div>
+												</div>
+												<div class="row mx-5">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label style="color: white;" class="required" for="id_voto">Voto:</label>
+															<select style="width: 100%; height: 37px;" name="voto" required="" id="id_voto" class="voto_select select2-hidden-accessible" data-select2-id="select2-data-id_voto" tabindex="-1" aria-hidden="true">
+																<option value="no" selected="">¿Ya votaste?</option>
+																<option value="si">Sí</option>
+																<option value="no">No</option>
+															</select>
+															<script>
+																// In your Javascript (external .js resource or <script> tag)
+																$(document).ready(function() {
+																	$('.voto_select').select2();
+																});
+															</script>
+														</div>
+													</div>
+												</div>
+												<div  style="margin-left: 80px; margin-right: 80px; margin-top: 20px;" class="d-flex justify-content-between">
+													<div>
+														<input style="background: rgba(255, 255, 255, 0.6); margin-right: 20px;  margin-bottom: 20px;" type="button" value="Limpiar" class="btn btn-default" onclick="resetear()">
+													</div>
+													<div>
+														<input style="background-color: #00A7FF;" type="submit" value="Guardar" class="btn btn-default" name="_save">
+													</div>
+												</div>
+											</form>
+				</div>
+   
+	      </div>
+      </div>
+   </div>
+
+
+<!--
+<div style="background: rgba(30, 77, 120, 0.58); margin-top: 50px; line-height: 0;" class=" accordion-flush" id="accordionFlushExample">
+	
+	<div style="border: none; background-color: transparent;" id="modificar" class="d-flex justify-content-between button collapsed" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+		<div class="p-2">
+
+			<svg style="margin: button 20px;; " xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-person-fill-add" viewBox="0 0 16 16">
+				<path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0Zm-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
+				<path d="M2 13c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Z"></path>
+			</svg> 
+            <spam  id="form-responsive2" class="responsive-form">Despliega para Agregar un nuevo Miembro</spam>
+		
+		</div>
+		<div class="p-2">
+		</div>
+
+		<div class="p-2">
+			<svg id="rotar" style="margin-top:14px;" width="24" height="12" viewBox="0 0 29 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path d="M24.9863 0.510184L28.9063 4.85018L15.8863 16.6102L12.9463 16.6102L0.0663252 4.85018L4.05633 0.510184L14.4163 10.8002L24.9863 0.510184Z" fill="#A9A9A9"/>
+				</svg>
+		</div>
+	   </div>
+
+	  <div class="accordion-item">
+	  <h2  class="accordion-header" id="flush-headingOne"></h2>
+	  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+		
+	 
+	 <div class="colM">
+
+ <style>
+		.wide label {width: 100px;}
+	
+         label{
+			text-align: right;
+			margin-right: 5px;
+			opacity: 0.5;			
+			font-family: 'Quicksand';
+			font-weight: lighter;
+
+		 }
+		
+ </style>
+		
+	
+		<div id="content-main">
+
+			<div style="border: 1px solid rgba(107, 228, 255, 0.29); margin-left: 60px; margin-right: 60px;" ></div>
+
+			
+
+			<form method="post"  id="formulario" style="margin-top: 40px;">
+			{% csrf_token %}
+				<div>
+						<div class="row">
+						<div class="col" style="text-align: right; right: 60px;">
+
+							<div hidden="" class="field-id_coordinador">
+									<label for="id_id_coordinador">Id coordinador:</label>
+									<div class="related-widget-wrapper" data-model-ref="user">
+										<select name="id_coordinador" id="id_id_coordinador">
+											<option value="" selected="">---------</option>
+										</select>
+							
+										<a class="related-widget-wrapper-link change-related" id="change_id_id_coordinador" data-href-template="/admin/adanapp/coordinador/__fk__/change/?_to_field=id&amp;_popup=1" data-popup="yes" title="Change selected user"><img src="/static/admin/img/icon-changelink.svg" alt="Change"></a><a class="related-widget-wrapper-link add-related" id="add_id_id_coordinador" data-popup="yes" href="/admin/adanapp/coordinador/add/?_to_field=id&amp;_popup=1" title="Add another user"><img src="/static/admin/img/icon-addlink.svg" alt="Add"></a><a class="related-widget-wrapper-link view-related" id="view_id_id_coordinador" data-href-template="/admin/adanapp/coordinador/__fk__/change/?_to_field=id" title="View selected user"><img src="/static/admin/img/icon-viewlink.svg" alt="View"></a>
+		
+									   </div>
+								   </div>
+
+
+						<div hidden="" class="field-id_votante">
+										<label for="id_id_votante">Id votante:</label>		
+										<input type="text" name="id_votante" class="vTextField" maxlength="100" id="id_id_votante">
+						</div>	
+
+
+				
+						<div class=" field-nombre" id="form_nombre" style="position: relative;">						
+								<label style="color: white;" data-id="hola" class="required form_label" for="id_nombre">Nombre:</label>	
+								<input  style="
+								width: 230px;
+								margin-top: 0px; filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+								height: 30px;
+								color: #ebeff1;
+								border: 2px solid #00a7ff;
+								border-radius: 73px; 
+								font-weight: 300;
+								font-size: 16px;
+								line-height: 25px;
+								background-color:transparent;"
+								type="text" name="nombre"  maxlength="100" required="" id="id_nombre">
+							
+							<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+						
+						
+                                
+						</div>
+                         
+
+	
+						<div class="field-apellido mt-3" id="form_apellido" style="position: relative;">														
+								<label style="color: white;" class="required form_label" for="id_apellido">Apellido:</label>
+								<input style="
+								width: 230px;
+								margin-top: 0px; 
+								filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+								height: 30px;
+								color: #ebeff1;
+								border: 2px solid #00a7ff;
+								border-radius: 73px; 
+								font-weight: 300;
+								font-size: 16px;
+								line-height: 25px;
+								background-color:transparent;
+								" type="text" name="apellido" maxlength="100" required="" id="id_apellido">
+								<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>
+															
+						</div>
+
+
+						<div class="field-cedula mt-3" id="form_cedula" style="position: relative;">									
+								<label style="color: white;" class="required form_label" for="id_cedula">Cedula:</label>	
+								<input style="
+								width: 230px;
+								margin-top: 0px; 
+								filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+								height: 30px;
+								color: #ebeff1;
+								border: 2px solid #00a7ff;
+								border-radius: 73px; 
+								font-weight: 300;
+								font-size: 16px;
+								line-height: 25px;
+								background-color:transparent;
+								" type="text" name="cedula" data-format="***-*******-*" data-mask="" placeholder="xxx-xxxxxxx-x" 
+								 maxlength="13" required="" id="id_cedula">	
+								<i style="right: 20px; top: 7px; width: 10px; " class="formulario__validacion-estado fas fa-times-circle"></i>	
+													
+						</div>
+
+						
+						<div class="field-fecha_nacimiento mt-3" id="form_fecha_nacimiento" style="position: relative;">
+								<label style="color: white;" class="required" for="id_fecha_nacimiento">Nacimiento:</label>
+								<input style="
+								width: 230px;
+								margin-top: 0px; 
+								filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+								height: 30px;
+								color: #ebeff1;
+								border: 2px solid #00a7ff;
+								border-radius: 73px; 
+								font-weight: 300;
+								font-size: 16px;
+								line-height: 25px;
+								background-color:transparent;
+									"
+								type="text" name="fecha_nacimiento" data-format="Día: **,  Mes: **,  Año: ****" data-mask="" placeholder="Día: xx,  Mes: xx,  Año: xxxx" maxlength="29"  style="width: 260px;" required="" id="id_fecha_nacimiento">
+								<i style="right: 20px; top: 7px; width: 10px;" class="formulario__validacion-estado fas fa-times-circle"></i>		
+						</div>
+						
+
+						<div class="field-telefono mt-3" id="form_telefono" style="position: relative;">
+								<label style="color: white;" class="required" for="id_telefono">Telefono:</label>
+								<input style="
+								width: 230px;
+								margin-top: 0px; 
+								filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+								height: 30px;
+								color: #ebeff1;
+								border: 2px solid #00a7ff;
+								border-radius: 73px; 
+								font-weight: 300;
+								font-size: 16px;
+								line-height: 25px;
+								background-color:transparent;
+									" type="text" name="telefono" data-format="(***) ***-****" data-mask="" placeholder="(xxx) xxx-xxxx"  maxlength="14" required="" id="id_telefono">
+								<i style="right: 20px; top: 7px; width: 10px;"class="formulario__validacion-estado fas fa-times-circle"></i>
+
+						</div>
+
+						<style>
+							.select2-container{
+								width: 190px;
+									margin-top: 0px; 
+									filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+									height: 30px;
+									color: #ebeff1;
+									border: 2px solid #00a7ff;
+									border-radius: 73px; 
+									font-weight: 300;
+									font-size: 16px;
+									line-height: 25px;
+									background-color:transparent;
+							}
+							.select2-dropdown {
+									background-color: skyblue;
+									border: 1px solid #aaa;
+									border-radius: 10px;
+									box-sizing: border-box;
+									display: block;
+									position: absolute;
+									left: -100000px;
+									width: 100%;
+									z-index: 1051
+                            }
+
+							.select2-container--default .select2-selection--single {
+								background-color: transparent;
+								border: 1px solid transparent;
+								border-radius: 4px
+							}
+
+							.select2-container--default .select2-selection--single .select2-selection__rendered {
+								color: #f3eeee;
+								font-size: 14px;
+								line-height: 25px;
+								opacity: 1;
+							}					
+						</style>
+
+						<div class="field-circunscripcion mt-3">
+							<div>
+								<label style="color: white;" class="required" for="id_circunscripcion">Circ.:</label>
+								
+									<select style="
+									width: 190px;
+									margin-top: 0px; 
+									filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+									height: 30px;
+									color: #ebeff1;
+									border: 2px solid #00a7ff;
+									border-radius: 73px; 
+									font-weight: 300;
+									font-size: 16px;
+									line-height: 25px;
+									background-color:transparent;
+									" name="circunscripcion" class="circunscripcion_select select2-hidden-accessible" required="" id="id_circunscripcion" onchange="seccion2('circunscripcion');editar()" data-select2-id="select2-data-id_circunscripcion" tabindex="-1" aria-hidden="true">	
+									</select>
+									
+									<script>
+										// In your Javascript (external .js resource or <script> tag)
+											$(document).ready(function() {
+												$('.circunscripcion_select').select2();
+											});
+
+										
+									</script>
+									
+								
+							</div>
+						</div>
+
+
+						<div class="field-sector mt-3">
+							<div>
+								<label style="color: white;" class="required" for="id_sector">Sector:</label>						
+									<select style="width: 190px;"  name="sector" required="" class="sector_select select2-hidden-accessible" id="id_sector" onchange="seccion2('sector');editar()" data-select2-id="select2-data-id_sector" tabindex="-1" aria-hidden="true">
+								    </select>
+									
+									<script>
+										// In your Javascript (external .js resource or <script> tag)
+											$(document).ready(function() {
+												$('.sector_select').select2();
+											});
+									</script>
+							</div>
+						</div>
+					
+						</div>
+
+                        <div class="col-1">
+							<div class="d-flex" style="height: 370px; color: #aaa; margin-left: 30px;">
+								<div class="vr"></div>
+							</div>	
+						</div>
+
+						<div class="col" style="right: 0;">
+
+						<div class="field-seccion">
+							<div>
+								<label style="color: white;" class="required" for="id_seccion">Seccion:</label>
+									<select style="width: 190px; width: 230px;"  name="seccion" class="seccion_select select2-hidden-accessible" required="" id="id_seccion" onchange="editar()" data-select2-id="select2-data-id_seccion" tabindex="-1" aria-hidden="true">
+									</select>	
+										
+									
+									<script>
+										// In your Javascript (external .js resource or <script> tag)
+											$(document).ready(function() {
+												$('.seccion_select').select2();
+											});
+									</script>
+							</div>
+						</div>
+
+
+						<div class="field-direccion mt-3">
+							<div>
+								<label style="color: white;" class="required" for="id_direccion">Direccion:</label>
+								<input style="
+								width: 230px;
+								margin-top: 0px; 
+								filter: drop-shadow(0px 0px 16px rgba(107, 228, 255, 0.34));
+								height: 30px;
+								color: #ebeff1;
+								border: 2px solid #00a7ff;
+								border-radius: 73px; 
+								font-weight: 300;
+								font-size: 16px;
+								line-height: 25px;
+								background-color:transparent;
+								"
+								type="text" name="direccion" class="" maxlength="300" required="" id="id_direccion">
+							</div>
+						</div>
+
+	
+						<div class="field-genero mt-3">
+							<div>
+								<label style="color: white;" class="required" for="id_genero">Genero:</label>
+								<select style="width: 230px;" name="genero" id="id_genero" class="genero_select select2-hidden-accessible" data-select2-id="select2-data-id_genero" tabindex="-1" aria-hidden="true">
+									<option value="M" selected="" data-select2-id="select2-data-8-xv97">Masculino</option>
+									<option value="F">Femenino</option>			
+								</select>
+								<script>
+									// In your Javascript (external .js resource or <script> tag)
+										$(document).ready(function() {
+											$('.genero_select').select2();
+										});
+								</script>
+							</div>		
+						</div>
+
+	
+			<div class="field-ocupacion mt-3">
+			<div>														
+			<label style="color: white;" class="required" for="id_ocupacion">Ocupacion:</label>						
+	
+			<select style="width: 190px;" name="ocupacion" required="" id="id_ocupacion"  onchange="editar()" class="ocupacion_select select2-hidden-accessible" data-select2-id="select2-data-id_ocupacion" tabindex="-1" aria-hidden="true">
+			  <option value="0" disabled="" selected="" data-select2-id="select2-data-10-x8p5">¿A que te dedicas?</option>
+			
+			  <option value="1">Estudiante</option>
+			
+			  <option value="2">Independiente</option>
+			
+			  <option value="3">Desempleado</option>
+			
+			  <option value="4">Emprendedor</option>
+			
+			  <option value="5">Profesor</option>
+			
+			  <option value="6">Albañil</option>
+			
+			  <option value="7">Ebanista</option>
+			
+			  <option value="8">Panadero</option>
+			
+			  <option value="9">Herrero</option>
+			
+			  <option value="10">Electricista</option>
+			
+			  <option value="11">Ama De Casa</option>
+			
+			  <option value="12">Taxista</option>
+			
+			  <option value="13">Chofer</option>
+			
+			  <option value="14">Operario</option>
+			
+			  <option value="15">Motoconcho</option>
+			
+			  <option value="16">Agricultor</option>
+			
+			  <option value="17">Musico</option>
+			
+			  <option value="18">Arte</option>
+			
+			  <option value="19">Pescador</option>
+			
+			  <option value="20">Camarero</option>
+			
+			  <option value="21">Bartender</option>
+			
+			  <option value="22">Seguridad</option>
+			
+			  <option value="23">Sastre</option>
+			
+			  <option value="24">Modista</option>
+			
+			  <option value="25">Cajero</option>
+			
+			  <option value="26">Gondolero</option>
+			
+			  <option value="27">Secretaria</option>
+			
+			  <option value="28">Cajero</option>
+			
+			  <option value="29">Colmadero</option>
+			
+			  <option value="30">Dependiente De Farmacia</option>
+			
+			  <option value="31">Creador De Contenido</option>
+			
+			  <option value="32">Conserje</option>
+			
+			  <option value="33">Servidor Publico</option>
+			
+			  <option value="34">Otro</option>
+			
+			  <option value="35">Abogado</option>
+			
+			  <option value="36">Arquitecto</option>
+			
+			  <option value="37">Ing. Civil</option>
+			
+			  <option value="38">Ing. Industrial</option>
+			
+			  <option value="39">Medico</option>
+			
+			  <option value="40">Enfermero</option>
+			
+			  <option value="41">Odontólogo</option>
+			
+			  <option value="42">Psicólogo</option>
+			
+			  <option value="43">Desarrollador</option>
+			
+			  <option value="44">Informático</option>
+			
+			  <option value="45">Idiomas</option>
+			
+			  <option value="46">Agrónomo</option>
+			
+			  <option value="47">Contador</option>
+			
+			  <option value="48">Teólogo</option>
+			
+			  <option value="49">Hotelería</option>
+			
+			  <option value="50">Periodista</option>
+			
+			  <option value="51">Comunicador</option>
+			
+			  <option value="52">Deportista</option>
+			
+			</select>
+		
+			<script>
+				// In your Javascript (external .js resource or <script> tag)
+					$(document).ready(function() {
+						$('.ocupacion_select').select2();
+					});
+			</script>		
+			
+			
+			</div>			
+			</div>
+
+
+	
+						<div class="field-colegio mt-3">
+							<div>		
+								<label style="color: white;" class="required" for="id_colegio">Colegio:</label>		
+									<select style="width: 190px;" name="colegio" required="" id="id_colegio" class="colegio_select select2-hidden-accessible" data-select2-id="select2-data-id_colegio" tabindex="-1" aria-hidden="true">
+										<option value="0" selected="">Colegios Electorales</option>		
+									</select>
+									<script>
+										// In your Javascript (external .js resource or <script> tag)
+											$(document).ready(function() {
+												$('.colegio_select').select2();
+											});
+									</script>
+
+									
+							</div>
+						</div>
+	
+						<div class="field-voto mt-3">
+							<div>
+								<label style="color: white;" class="required" for="id_voto">Voto:</label>
+	
+								<select style="width: 230px;" name="voto" required="" id="id_voto" class="voto_select select2-hidden-accessible" data-select2-id="select2-data-id_voto" tabindex="-1" aria-hidden="true">
+									<option value="no"  selected="">¿Ya votaste?</option>
+									<option value="si">Sí</option>
+									<option value="no">No</option>
+	
+								</select>
+								
+								<script>
+									// In your Javascript (external .js resource or <script> tag)
+										$(document).ready(function() {
+											$('.voto_select').select2();
+										});
+								</script>
+							</div>		
+						</div>
+			     	</div>
+					</div>
+
+						<div class="d-flex flex-row-reverse">
+
+							<div style="margin-right: 70px" class="p-2">
+								
+							    <input width="35px" style="background: rgba(255, 255, 255, 0.6); margin-right: 70px;" type="button" value="Limpiar" class="default" onclick="resetear()">
+							</div>
+
+							<div class="p-2">
+								<input width="35px" style="margin-bottom: 20px; background-color: #00A7FF;" type="submit" value="Guardar" class="default" name="_save">
+						  </div>
+						</div>  
+
+				</div>
+			</form>
+		</div>
+	
+	
+		<br class="clear">
+	</div>
+	
+
+	 </div>
+	</div>
+</div>-->
+<!-- FORMULARIO -->
+
+<!--SHOW/OCULTAR COLUMNAS-->
+
+<div style="margin-top: 30px;" class="accordion" id="accordionExample">
+	<div style="border-radius: 0px;" class="accordion-item">
+	  <h2  style="line-height: 0;" class="accordion-header" id="headingOne">
+		<button  class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		  <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+			<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+		  </svg>
+		  <span id="form-responsive" class="responsive-font-example">Despliega para desbloquear columnas</span>
+
+		</button>
+	  </h2>
+  
+	  <div  id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		<div class="accordion-body">
+
+			<div id="columnas">
+            
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check0" data-nombre="0" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check0">No</label>
+			  </div></li>
+              
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check1" data-nombre="1" onchange="quitar_columna()">
+				<label class="form-check-label" for="check1">Id</label>
+			  </div></li>
+
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check3" data-nombre="3" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check3">Apellido</label>
+			  </div></li>
+		
+
+			   <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check4" data-nombre="4" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check4">Cédula</label>
+			  </div></li>
+
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check1" data-nombre="1" onchange="quitar_columna()">
+				<label class="form-check-label" for="check1">Id</label>
+			  </div></li>
+		
+		
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check2" data-nombre="2" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check2">Nombre</label>
+			  </div></li>
+		     
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check3" data-nombre="3" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check3">Apellido</label>
+			  </div></li>
+			
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check4" data-nombre="4" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check4">Cédula</label>
+			  </div></li>
+			
+		
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check5" data-nombre="5" onchange="quitar_columna()">
+				<label class="form-check-label" for="check5">Edad</label>
+			  </div></li>
+
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check6" data-nombre="6" onchange="quitar_columna()">
+				<label class="form-check-label" for="check6">Circ.</label>
+			  </div></li>
+		
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check7" data-nombre="7" onchange="quitar_columna()">
+				<label class="form-check-label" for="check7">Sector</label>
+			  </div></li>
+		
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check8" data-nombre="8" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check8">Seccion</label>
+			  </div></li>
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check9" data-nombre="9" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check9">Dirección</label>
+			  </div></li>
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check10" data-nombre="10" onchange="quitar_columna()">
+				<label class="form-check-label" for="check10">Genero</label>
+			  </div></li>
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check11" data-nombre="11" onchange="quitar_columna()">
+				<label class="form-check-label" for="check11">Recinto</label>
+			  </div></li>
+  
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check12" data-nombre="12" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check12">Teléfono</label>
+			  </div></li>
+		
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check13" data-nombre="13" onchange="quitar_columna()">
+				<label class="form-check-label" for="check13">Ocupacion</label>
+			  </div></li>
+		
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check14" data-nombre="14" onchange="quitar_columna()">
+				<label class="form-check-label" for="check14">Voto</label>
+			  </div></li>
+            
+
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check15" data-nombre="15" onchange="quitar_columna()">
+				<label class="form-check-label" for="check15">Coordinador</label>
+			  </div></li>
+			
+			  <li><div class="form-check form-switch">
+				<input class="form-check-input" type="checkbox" id="check16" data-nombre="16" onchange="quitar_columna()" checked>
+				<label class="form-check-label" for="check16">Edición</label>
+			  </div></li>
+		   
+		  </div>
+
+		  <style>
+			.custom-control-label {
+			  margin-bottom: 20px;
+			}
+			#columnas {
+			  column-count: 7;
+			  column-gap: 5px;
+			  list-style: none;
+			}
+			@media (max-width: 992px) {
+			  #columnas {
+				column-count: 6;
+			  }
+			}
+			@media (max-width: 768px) {
+			  #columnas {
+				column-count: 5;
+			  }
+			}
+			@media (max-width: 576px) {
+			  #columnas {
+				column-count: 4;
+			  }
+			}
+			@media (max-width: 480px) {
+			  #columnas {
+				column-count: 3;
+			  }
+			}
+			@media (max-width: 360px) {
+			  #columnas {
+				column-count: 2;
+			  }
+			}
+			@media (max-width: 280px) {
+			  #columnas {
+				column-count: 1;
+			  }
+			}
+		  </style>
+
+		</div>
+
+	  </div>
+	</div>
+</div>
+  
+  
+<!--SHOW/OCULTAR COLUMNAS-->
+
+
+<!-- TABLA PRINCIPAL-->	
+
+<style>
+   div.dataTables_wrapper {
+	position:relative;
+	 margin-top: 30px
+   }
+</style>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.1/css/buttons.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+
+    <style>
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input[type="search"] {
+  flex-grow: 1;
+}
+
+.search-icon {
+  margin-left: 10px;
+}
+
+.fa-search {
+  color: #999;
+}
+
+	</style>
+	
+    <!-- Tu contenido HTML aquí -->
+    <table id="datatable_users" class="display responsive nowrap" style="width:100%; top: 40px;">
+        <thead>
+            <tr  id="table_tr"></tr>
+        </thead>
+        <tbody id="tableBody_users"></tbody>
+    </table>
+
+
+<!-- Librerías JS -->
+<!--<script src="https://code.jquery.com/jquery-3.7.0.js"></script>-->
+<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.1/js/dataTables.buttons.min.js"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+<script src="//cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+<script src="//cdn.datatables.net/buttons/1.2.1/js/buttons.html5.min.js"></script>
+<!-- Librerías JS --> 
+
+
+<script src="{% static 'js/dashboard/table.js' %}"></script>
+<!-- TABLA PRINCIPAL-->	
+
+
+<!-- SCRIPS SRC  -->
+<script src="{% static 'js/sidebar/sidebar.js' %}"></script>
+<script src="{% static 'js/dashboard/graficos.js' %}"></script>
+<script src="{% static 'js/dashboard/mascaras.js' %}"></script>  
+<script src="{% static 'js/dashboard/mascaras.js' %}"></script> 
+<script src="{% static 'js/sidebar/bootstrap.min.js.map' %}"></script>
+<script src="{% static 'js/sidebar/main.js' %}"></script>
+<script src="{% static 'js/dashboard/post_create.js' %}"></script>
+<script src="{% static 'js/dashboard/validaciones.js' %}"></script>
+<!-- SCRIPS SRC  -->
+
+<!-- boostrap  -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- boostrap  -->
+
+<!-- select  -->
+
+
+<style>
+	div.dt-buttons > .dt-button, div.dt-buttons > div.dt-button-split .dt-button {
+	  cursor: pointer;
+	  font-size: .88em;
+	  line-height: 1.6em;
+	  color: silver;
+	  white-space: nowrap;
+	}
+	  </style>
+</div>
+
+</div>
+
+
+</body>
+
+
+{% endblock %}

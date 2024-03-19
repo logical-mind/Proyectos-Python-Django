@@ -1,0 +1,241 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block pago %}
+
+<div style="width: 85%;" class="container-fluid">
+
+    <div style="margin-top: 50px;" class="accordion" id="accordionExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              INFORMACION GENERAL
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Definición</th>
+                        <th scope="col">Ejemplo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" style="width: 20%;">Ingreso</th>
+                            <td style="width: 30%;">Cantidad de dinero que se va a invertir (minimo un dolar).</td>
+                            <td><img src="https://catalobot.com/static/img/estrategias/importe.png" alt="importe" width="80%"></td>
+                          </tr>
+                     
+                      
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne2">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2">
+                COMPONENTES DEL MODO AUTO/BOT
+              </button>
+            </h2>
+            <div id="collapseOne2" class="accordion-collapse collapse" aria-labelledby="headingOne2" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                  <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col"></th>
+                          <th scope="col">Definición</th>
+                          <th scope="col">Ejemplo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <th scope="row" style="width: 20%;">Ingreso</th>
+                              <td style="width: 30%;">Cantidad de dinero que se va a invertir (minimo un dolar).</td>
+                              <td><img src="https://catalobot.com/static/img/estrategias/importe.png" alt="importe" width="80%"></td>
+                            </tr>
+                        <tr>
+                          <th scope="row">Martingala</th>
+                          <td>Acción que duplica la inversión anterior solo si se ha perdido la partida con el fin de recuperar lo perdido y obterner ganancias nuevas.</td>
+                          <td><img src="https://catalobot.com/static/img/estrategias/martingala.png" alt="martingala" width="80%"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Tipo de martingala Simple</th>
+                          <td>Simple: Este tipo de martingala solo recupera la inversión perdida sin obterner ganancias.
+                              </td>
+                          <td><img src="https://catalobot.com/static/img/estrategias/martingala_simple.png" alt="martingala simple" width="80%"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Tipo de martingala Double</th>
+                          <td>Double: Este tipo de martingala recupera lo invertido y busca obtener ganancias nuevas.(la cantidad de dinero en este tipo de martingala es mayor a la de el martingala simple). Este es el comunmente usado.
+                          </td>
+                          <td><img src="https://catalobot.com/static/img/estrategias/martingala_double.png" alt="martingala double" width="80%"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Modo entrada</th>
+                          <td>Modo de entrada: Determina en que vela entrará en funcion a la estrategia, solo si se ha perdido en las velas anteriores, esta es una alternativa a los martingalas cuando prefieres ser mas conservador.</td>
+                          <td><img src="https://catalobot.com/static/img/estrategias/modo_entrada.png" alt="modo de entrada" width="80%"></td>
+                        </tr>
+                        <tr>
+                          <th scope="row">Num. Operaciones</th>
+                          <td>Numero de operaciones: Es la cantidad de veces que se ejecutará una o mas estrategias.</td>
+                          <td><img src="https://catalobot.com/static/img/estrategias/martingala.png" alt="numero de operaciones" width="80%"></td>
+                        </tr>
+                  
+                        <tr>
+                          <th scope="row">After Loss</th>
+                          <td>Solo abrirá una operación si se ha perdido en un cuadrante(catalogo). Esta estrategia se puede configurar para que la operacion entre luego de 1, 2 o 3 perdidas consecutivas.</td>
+                          <td><img src="https://catalobot.com/static/img/estrategias/after_loss.png" alt="after loss" width="80%"></td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+            </div>
+          </div>
+
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              EXPLICACIÓN DE LAS ESTRATEGIAS
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Definición</th>
+                        <th scope="col">Ejemplo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row" style="width: 20%;">MHI</th>
+                        <td  style="width: 30%;">En el cuadrante de 5 velas o 5 minutos, se toman en cuenta las ultimas 3 velas, y se escoge el color de la menor de esas 3, para abrir la operación en el cuadrante siguiente en la primera vela, con el color de la minoría anterior.</td>
+                        <td>  <img src="https://catalobot.com/static/img/estrategias/mhi.png" alt="mhi" width="80%">  </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">MHI2</th>
+                        <td>En el cuadrante de 5 velas o 5 minutos, se toman en cuenta las ultimas 3 velas, y se escoge el color de la menor de esas 3, para abrir la operación en el cuadrante siguiente en la segunda vela, con el color de la minoria anterior.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/mhi2.png" alt="mhi2" width="80%"></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">MHI3</th>
+                        <td> En el cuadrante de 5 velas o 5 minutos, se toman en cuenta las ultimas 3 velas, y se escoge el color de la menor de esas 3, para abrir la operación en el cuadrante siguiente en la tercera vela, con el color de la minoría anterior.
+                        </td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/mhi3.png" alt="mhi3" width="80%"></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">MHI Mayoría</th>
+                        <td>En el cuadrante de 5 velas o 5 minutos, se toman en cuenta las ultimas 3 velas, y se escoge el color de la mayor cantidad de esas 3, para abrir la operación en el cuadrante siguiente en la primera vela, con el color de la mayoría  anterior.
+                            </td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/mhimai.png" alt="mhi mayoria" width="80%"></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">MHI2 Mayoría</th>
+                        <td>En el cuadrante de 5 velas o 5 minutos, se toman en cuenta las ultimas 3 velas, y se escoge el color de la mayor cantidad de esas 3,para abrir la operación en el cuadrante siguiente en la segunda vela, con el color de la mayoría  anterior.
+                            </td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/mhi2mai.png" alt="mhi2 mayoria" width="80%"></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">MHI3 Mayoría</th>
+                        <td>En el cuadrante de 5 velas o 5 minutos, se toman en cuenta las ultimas 3 velas, y se escoge el color de la mayor cantidad de esas 3,para abrir la operación en el cuadrante siguiente en la tercera vela, con el color de la mayoría  anterior.
+                            
+                        </td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/mhi3mai.png" alt="mhi3 mayoria" width="80%"></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Milhão Minoría</th>
+                        <td>Se toman en cuanta el color de las 5 velas del cuandrante, y el color que sea menor, se abrirá la vela del cuadrante siguiente del color de la minoría, en la primera vela.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/milhao.png" alt="milhao minoria" width="80%"></td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Milhão Mayoría</th>
+                        <td>Se toman en cuanta el color de las 5 velas del cuandrante, y el color que sea mayor, se abrirá la vela del cuadrante siguiente del color de la mayoría, en la primera vela.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/milhaomai.png" alt="milhao mayoria" width="80%"></td>
+                      </tr>
+                
+                      <tr>
+                        <th scope="row">Melhor de 3</th>
+                        <td>En este caso se toman  las 3 velas del medio (2,3y 4 vela)  del cuadrante que es de 5 velas, y el color de la mayoria de esas 3 velas, se usará para abrir la tercera vela del proximo cuadrante con ese color y el martingala se abre en la siguiente vela o sea la 4ta vela.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/melhor.png" alt="melhor de 3" width="80%"></td>
+                      </tr>
+                
+                      <tr>
+                        <th scope="row">Torres Gemelas</th>
+                        <td>En este caso las operaciones se abren en el mismo cuadrante  y se toma en cuenta el color de la primera vela para abrir la operación en la ultima vela o sea la 5 vela, y las martingala se abriran en el cuadrante siguiente en la primera y segunda vela.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/torres.png" alt="torres gemelas" width="80%"></td>
+                      </tr>
+                
+                      <tr>
+                        <th scope="row">Padrão 23</th>
+                        <td>En este caso las operaciones se abren en el mismo cuadrante  y se toma en cuenta el color de la primera vela para abrir la operación en la segunda vela del mismo cuadrante, y las martingala se abriran en la tercera y cuarta vela.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/padrao23.png" alt="padrão 23" width="80%"></td>
+                      </tr>
+                
+                      <tr>
+                        <th scope="row">Padrão 3x1</th>
+                        <td>Se toma en cuenta el color de las 3 primeras  velas del cuandrante, y el color que sea la minoria de las primeras 3 velas, se abrira la operación con el color de esa minoría de las primeras 3 velas en la 5ta vela.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/padrao3x1.png" alt="padrão 3x1" width="80%"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              DETALLES DEL CATÁLOGO
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Definición</th>
+                        <th scope="col">Ejemplo</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row" style="width: 20%;">Catálogo</th>
+                        <td  style="width: 30%;">El catálogo nos muestra una vision clara del mercado y su comportamiento, tambien nos ayuda a establecer estrategias con esperanza matematica,
+                        en catalobot te ofrecemos un catalogo completo para que no estes a oscuras, sino que inviertas tu dinero con confianza y seguridad.</td>
+                        <td>  <img src="https://catalobot.com/static/img/estrategias/catalogo1.png" alt="mhi" width="80%">  </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">Catálogo</th>
+                        <td>El catálogo nos muestra una vision clara del mercado y su comportamiento, tambien nos ayuda a establecer estrategias con esperanza matematica,
+                            en catalobot te ofrecemos un catalogo completo para que no estes a oscuras, sino que inviertas tu dinero con confianza y seguridad.</td>
+                        <td><img src="https://catalobot.com/static/img/estrategias/catalogo2.png" alt="mhi2" width="80%"></td>
+                      </tr>
+                      
+                      </tbody>  
+                      </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+{% endblock %}

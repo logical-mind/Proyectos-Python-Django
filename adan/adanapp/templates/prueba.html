@@ -1,0 +1,76 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<canvas id="MyChart" width="400" height="200"></canvas>
+
+
+<script>
+new Chart(document.getElementById("MyChart"), {
+  type: 'bar',
+  data: {
+    labels: ['Total', 'Hombres', 'Mujeres'],
+    datasets: [{
+      label: "Total",
+      type: "bar",
+      stack: "Base",
+      backgroundColor: "#eece01",
+      data: [30, 31, 32],
+    },{
+      label: "Jovenes",
+      type: "bar",
+      stack: "Sensitivity",
+      backgroundColor: "#f8981f",
+      data: [20, 21, 22],
+    },
+    {
+      label: "Adultos",
+      type: "bar",
+      stack: "Base2",
+      backgroundColor: "#eece01",
+      data: [30, 31, 32],
+    },
+    {
+      label: "Envejecientes",
+      type: "bar",
+      stack: "Base3",
+      backgroundColor: "#eece01",
+      data: [30, 31, 32],
+    }
+  ]
+  },
+  options: {
+    scales: {
+      xAxes: [{
+        stacked: true,
+        ticks: {
+          beginAtZero: true,
+          maxRotation: 0,
+          minRotation: 0
+        }
+      }],
+      yAxes: [{
+        stacked: true,
+      }]
+    },
+    ticks: {
+            display: true,
+            beginAtZero: true,
+          },
+    plugins: {
+      datalabels: {
+        
+        display: function(context) {
+          return context.dataset.data[context.dataIndex] !== 0; // Oculta las etiquetas si el valor es 0
+        },
+        color: 'black',
+        font: {
+          weight: 'bold'
+        },
+        formatter: function(value, context) {
+          return context.dataset.label + ': ' + value; // Muestra el nombre de la barra y su valor
+        }
+      }
+    }
+  }
+});
+
+  </script>
